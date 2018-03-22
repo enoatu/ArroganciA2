@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>nopaste</title>
+<!-- read css -->
         <?php $this->assets->outputCss();
          ?>
     </head>
@@ -8,16 +9,25 @@
           click and paste!  
     </h2>
     <p id='copyTarget'>
-
         <?php 
             $url =  'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-    # echo  "<a href = '$url'>$url</a>";
             echo $url;
         ?>
-            
     </p>
     <button id='copyBtn'>urlコピー</button>
-    <?php 
-              $this->assets->outputJs();
-     ?>
+
+    <div>
+<?php       
+            echo $this->view->uri;
+            $text = $this->view->text;
+            if ($text) {
+                echo $text;
+            } else {
+                echo "Fatal Error";
+            }
+        
+ ?>
+    </div>
+<!-- js include -->
+    <?php $this->assets->outputJs();?>
 </html>

@@ -5,7 +5,6 @@ use Phalcon\Mvc\Controller;
 class IndexController extends Controller
 {
 
-
     public function indexAction() {
         $this->assets->addCss(
             '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css',
