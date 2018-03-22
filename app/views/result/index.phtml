@@ -1,12 +1,23 @@
 <html>
     <head>
         <title>nopaste</title>
-        <?php $this->assets->outputCss(); ?>
+        <?php $this->assets->outputCss();
+         ?>
     </head>
     <h2>
           click and paste!  
     </h2>
-    <p>
-             
+    <p id='copyTarget'>
+
+        <?php 
+            $url =  'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+    # echo  "<a href = '$url'>$url</a>";
+            echo $url;
+        ?>
+            
     </p>
+    <button id='copyBtn'>urlコピー</button>
+    <?php 
+              $this->assets->outputJs();
+     ?>
 </html>

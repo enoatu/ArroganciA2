@@ -7,7 +7,7 @@ $di->set('router', function(){
     $router = new \Phalcon\Mvc\Router();
 
     $router->add(
-        '/:params',
+        '/result/:params',
         [
             'controller' => 'result',
             'action'     => 'index',

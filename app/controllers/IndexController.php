@@ -6,7 +6,7 @@ class IndexController extends Controller
 {
 
 
-    public function indexAction(){
+    public function indexAction() {
         $this->assets->addCss(
             '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css',
             false
@@ -25,11 +25,14 @@ class IndexController extends Controller
 
         if ($success) {
 
-       $this->view->disable();
+       #$this->view->disable();
             #echo 'Thanks for registering';
        $response = new Phalcon\Http\Response();
-       $response->redirect("http://enoatu.com/nopaste/$uri", false);
+       $response->redirect("result/$url", false);
+       
        $response->send();
+       #header("Location: ../result/$url");
+       exit;
 
         } else {
             echo 'Sorry, the following problems were generated: ';
@@ -39,11 +42,9 @@ class IndexController extends Controller
             foreach ($messages as $ms) {
                 echo $ms->getMessages(), '<br/>';
             }
-        
        }
 
        $this->view->disable();
-
     }
 
     public function resultAction() {
