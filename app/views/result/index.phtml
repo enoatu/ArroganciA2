@@ -1,33 +1,33 @@
 <html>
-    <head>
-        <title>nopaste</title>
-<!-- read css -->
-        <?php $this->assets->outputCss();
-         ?>
-    </head>
-    <h2>
-          click and paste!  
-    </h2>
-    <p id='copyTarget'>
-        <?php 
-            $url =  'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-            echo $url;
-        ?>
-    </p>
-    <button id='copyBtn'>urlコピー</button>
 
-    <div>
-<?php       
-            echo $this->view->uri;
-            $text = $this->view->text;
-            if ($text) {
-                echo $text;
-            } else {
-                echo "Fatal Error";
-            }
-        
- ?>
+<head>
+<title>nopaste</title>
+<?php $this->assets->outputCss();?>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width">
+</head>
+
+<?php 
+require_once(__dir__ . '/../../../library/parsedown/Parsedown.php');
+$parser = new Parsedown(); #https://github.com/erusev/parsedown
+$content = $parser->text($this->view->maintext);
+$url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+?>
+
+<body>
+    <div id="menubar">
+        <p id='copyTarget'>
+        <?php echo $url; ?>
+        </p>
+    <button id='copyBtn'>urlをコピー</button>
     </div>
-<!-- js include -->
+    <div id="wrap">
+        <div class="markdown-body markdown">
+         <?php echo $content;?>
+        </div>
+    </div>
     <?php $this->assets->outputJs();?>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+
 </html>

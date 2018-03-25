@@ -1,41 +1,32 @@
 <?php
 
 use Phalcon\Mvc\Controller;
-
+require_once __dir__ . '/../../library/EditText.php';
 class ResultController extends Controller
 {
     public function indexAction() {
-        $this->assets->addCss(
-            '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css',
-            false
-        );
-        $this->assets->addCss('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'
-            ,false);
-        $this->assets->addJs('http://code.jquery.com/jquery-latest.min.js',false);
-        $this->assets->addJs('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js',false);
-        $this->assets->addJs('js/result.js');
-        $text = new Texts();
-        $url = $_SERVER["REQUEST_URI"];
+
+        include_once __dir__ . "/../../library/AddAssets.php";
+
+        $url  = $_SERVER["REQUEST_URI"];
+        $url  = EditText::getEndText($url, '/');
+        $url  = "'" . $url . "'";#なんでこんなことしなきゃいけないん？？？
         try {
-            $mText = $text->find(
-                [
-                    "url" => $url
-                ]
-            );
-
-            if ($mText){
-                foreach ($mText as $t) {
-                    $this->view->text = $t;
-                }
+            $mText = Texts::findFirst("url = $url");
+            if ($mText->text) {
+                $this->view->maintext = $mText->text;
             } else {
-                $this->view->text = "I'm sorry! url is expired or not exists";
+                $this->view->maintext =
+                    "# I'm sorry!
+                    \n **URL is expired or does not exists**
+                     ";
             }
-
         } catch (\Exception $e) {
             echo $e;
+            $this->view->maintext = "catch";
         }
         
-        $this->view->uri = $request_uri;
+        $this->view->uri = $url;
 
         #$this->view->disable();
     }
@@ -43,5 +34,4 @@ class ResultController extends Controller
     public function resultAction() {
         
     }
-
 }
