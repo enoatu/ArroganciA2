@@ -4,7 +4,7 @@
 # moove Co., Ltd.
 
 $di->set('router', function(){
-    $router = new \Phalcon\Mvc\Router();
+    $router = new \Phalcon\Mvc\Router(false);
 
     $router->add(
         '/result/:params',

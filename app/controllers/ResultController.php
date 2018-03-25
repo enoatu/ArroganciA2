@@ -10,7 +10,7 @@ class ResultController extends Controller
 
         $url  = $_SERVER["REQUEST_URI"];
         $url  = EditText::getEndText($url, '/');
-        $url  = "'" . $url . "'";#なんでこんなことしなきゃいけないん？？？
+        $url  = "'" . $url . "'";#用意されていない？なんでことしなきゃいけないん？？
         try {
             $mText = Texts::findFirst("url = $url");
             if ($mText->text) {
@@ -18,7 +18,7 @@ class ResultController extends Controller
             } else {
                 $this->view->maintext =
                     "# I'm sorry!
-                    \n **URL is expired or does not exists**
+                    \n *The URL is invalid or has expired. *
                      ";
             }
         } catch (\Exception $e) {
@@ -29,9 +29,5 @@ class ResultController extends Controller
         $this->view->uri = $url;
 
         #$this->view->disable();
-    }
-
-    public function resultAction() {
-        
     }
 }

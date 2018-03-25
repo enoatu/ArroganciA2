@@ -6,10 +6,11 @@ class IndexController extends Controller
 {
 
     public function indexAction() {
-        $this->assets->addCss(
+       $this->assets->addCss(
             '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css',
             false
-        ); 
+       ); 
+        $this->assets->addCss('css/index.css');
     }
 
     public function registerAction() {
@@ -57,7 +58,9 @@ class IndexController extends Controller
          
     }
 
-    public function show404Action(){
+    public function show404Action() {
         echo "<h2>Sorry! $_SERVER[REQUEST_URI] is expired or not exist! </h2>";
+        $this->response->setStatusCode(404, 'Not Found');
     }
 }
+

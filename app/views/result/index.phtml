@@ -16,13 +16,13 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 <body>
     <div id="menubar">
-        <p id='copyTarget'>
+        <p id="copyTarget">
         <?php echo $url; ?>
         </p>
-    <button id='copyBtn'>urlをコピー</button>
+    <button id="copyBtn">Copy URL</button><button id="backhome" onclick="location.href='..'">Discard the changes and go Home</button>
     </div>
     <div id="wrap">
-        <div class="markdown-body markdown">
+        <div id="content" class="markdown-body markdown">
          <?php echo $content;?>
         </div>
     </div>

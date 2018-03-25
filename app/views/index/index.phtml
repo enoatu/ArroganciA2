@@ -1,24 +1,22 @@
 <html>
-    <head>
+<head>
     <title>nopaste</title>
-
+    <meta name="viewport" content="width=device-width">
         <?php $this->assets->outputCss(); ?>
-    </head>
-    <h2>
-        Sign up using this form
-    </h2>
+</head>
+<body>
+    <h1>
+        simple nopaste by markdown
+   </h1>
 
     <?php echo $this->tag->form("index/register");?>
 
-    <p>
-        <label for="text">
-            input text
-            </label>
-    <?php echo $this->tag->textField("text");?>
-    </p>
+    <?php echo $this->tag->textarea("text");?>
+    
 
     <p>
-    <?php echo $this->tag->submitButton("Register");?>
+    <?php echo $this->tag->submitButton("Make");?>
     </p>
     </form>
+</body>
 </html>
