@@ -16,6 +16,7 @@ class IndexController extends Controller
     public function registerAction() {
         $url     = md5(uniqid(rand(),1));
         $text    = new Texts();
+
         $success = $text->save(
             [
                'text' => $this->request->getPost('text'),
@@ -25,14 +26,11 @@ class IndexController extends Controller
 
         if ($success) {
 
-       #$this->view->disable();
-            #echo 'Thanks for registering';
-       $response = new Phalcon\Http\Response();
-       $response->redirect("result/$url", false);
-       
-       $response->send();
-       #header("Location: ../result/$url");
-       exit;
+            #$this->view->disable();
+            $response = new Phalcon\Http\Response();
+            $response->redirect("result/$url", false);
+            $response->send();
+            exit;
 
         } else {
             echo 'Sorry, the following problems were generated: ';
@@ -47,20 +45,9 @@ class IndexController extends Controller
        $this->view->disable();
     }
 
-    public function resultAction() {
-        $text = new Texts();
-        echo $_SERVER["REQUEST_URI"];
-        #$success = $text->find(
-        #    "url" => $
-        #)
-
-        $this->view->disable();
-         
-    }
-
+    
     public function show404Action() {
-        echo "<h2>Sorry! $_SERVER[REQUEST_URI] is expired or not exist! </h2>";
-        $this->response->setStatusCode(404, 'Not Found');
+         echo "<a href='https://www.youtube.com/watch?v=EvBDa4TX3Bo'>NOT FOUND</a>";
     }
 }
 

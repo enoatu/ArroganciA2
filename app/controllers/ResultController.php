@@ -8,12 +8,13 @@ class ResultController extends Controller
 
         include_once __dir__ . "/../../library/AddAssets.php";
 
-        $url  = $_SERVER["REQUEST_URI"];
+       $url  = $_SERVER["REQUEST_URI"];
         $url  = EditText::getEndText($url, '/');
-        $url  = "'" . $url . "'";#用意されていない？なんでことしなきゃいけないん？？
+       # $url = $this->params['params'];
+        #$url  = "'" . $url . "'";#用意されていない？なんでことしなきゃいけないん？？
         try {
-            $mText = Texts::findFirst("url = $url");
-            if ($mText->text) {
+            $mText = Texts::findFirst(["url = :url:",'bind'=> ['url' => $url]]);
+            if ($mText && $mText->text) {
                 $this->view->maintext = $mText->text;
             } else {
                 $this->view->maintext =

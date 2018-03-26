@@ -8,7 +8,13 @@
     }
     #copybtn {
         font-size: 1.3em;
+        cursor: pointer;
     } 
+
+    #backhome {
+        cursor: pointer;
+
+    }
 
     #menuBar {
         text-align: center;
@@ -20,18 +26,12 @@
     }
 
     #wrap {
-        padding: 5% 5% 5% 5%;
+        padding: 5% 5% 5% 25%;
         border-color: black;
         border: inset 1px #000; 
         margin: 10% auto;
         background-color: #F7FFF6;
     }
-
-    #linkButton {
-
-    }
-
-
 
 }
 
@@ -39,7 +39,7 @@
     /*　スマホ用*/
 
     *{
-    font-size: 1.15em;
+    font-size: 1.3em;
     }
 
     #menuBar {
@@ -48,7 +48,7 @@
             }
 
     #wrap {
-        margin-top: 20%;
+        margin-top: 30%;
     }
 
 }
