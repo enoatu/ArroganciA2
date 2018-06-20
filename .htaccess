@@ -3,5 +3,5 @@
 	RewriteRule  ^$ public/    [L]
 	RewriteRule  (.*) public/$1 [L]
 </IfModule>
-
+AddType application/x-httpd-php .php .volt .phtml
 php_flag display_errors On

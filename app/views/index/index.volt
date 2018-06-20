@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>
-        simple nopaste by markdown
+        {{ hoge }}    simple nopaste by markdown
    </h1>
 
     <?php echo $this->tag->form("index/register");?>

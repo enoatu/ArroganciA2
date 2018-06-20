@@ -23,7 +23,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     </div>
     <div id="wrap">
         <div id="content" class="markdown-body markdown">
-         <?php echo htmlspecialchars($content);?>
+         <?php echo $content;?>
         </div>
     </div>
     <?php $this->assets->outputJs();?>

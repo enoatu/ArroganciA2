@@ -10,7 +10,9 @@ class IndexController extends Controller
             '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css',
             false
        ); 
-        $this->assets->addCss('css/index.css');
+       $this->assets->addCss('css/index.css');
+       
+       $this->view->hoge = "ほげ";
     }
 
     public function registerAction() {
