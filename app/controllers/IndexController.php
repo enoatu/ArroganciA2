@@ -3,17 +3,22 @@
 use Phalcon\Mvc\Controller;
 
 class IndexController extends Controller
-{
+{   
+    private function common() {
+        $this->session->get("user");
+        if (!$this->session->has("user")) {
+            $response = new Phalcon\Http\Response();
+            $response->redirect("/", false);
+            $response->send();
+            exit;
+        }
+    }
 
     public function indexAction() {
-       $this->assets->addCss(
-            '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css',
-            false
-       ); 
-       $this->assets->addCss('css/index.css');
-       
-       $this->view->hoge = "ほげ";
+       //$this->assets->addCss('css/index.css');
+             $this->view->title = "Home";
     }
+
 
     public function registerAction() {
         $url     = md5(uniqid(rand(),1));
@@ -36,9 +41,7 @@ class IndexController extends Controller
 
         } else {
             echo 'Sorry, the following problems were generated: ';
-
             $messages = $text->getMessages();
-
             foreach ($messages as $ms) {
                 echo $ms->getMessages(), '<br/>';
             }

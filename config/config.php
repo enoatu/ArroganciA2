@@ -10,8 +10,6 @@
 //[1]オートローダの登録　アプリケーション内のコントローラやモデルなどのクラスをロードするために使用　　例としてPhalcon\Loaderコンポーネントを使用　
 use Phalcon\Loader;
 
-
-
 //例ではあらかじめ定義されたディレクトリに基づいてクラスを検索することにする	
 $loader = new Loader();
 $loader->registerDirs(
@@ -64,7 +62,6 @@ $di->set(
     }
 );
 
-
 //Phalconにより生成されるすべてのURIにtutorialが含まれるようにbase URIを登録します。
 //ハイパーリンクを生成するために、Phalcon\Tagを使用する際に重要になってきます。
 //
@@ -76,7 +73,7 @@ $di->set(
     'url',
     function(){
         $url = new UrlProvider();
-        $url->setBaseUri('/ArroganciA2/');//<-現在のプロジェクトまでのURLのパスを入れる
+        $url->setBaseUri('https://enoatu.com/ArroganciA2/');//<-現在のプロジェクトまでのURLのパスを入れる
         return $url;
     }
 );
@@ -105,6 +102,16 @@ $di->set(
     }
 );
 
+//セッションのセットアップ
+use Phalcon\Session\Adapter\Files as Session;
+
+$di->setShared('session', function(){
+    $session = new Session();
+    $session->start();
+    return $session;
+});
+
+
 use Phalcon\Mvc\Application;
 
 $application = new Application($di);
@@ -116,6 +123,4 @@ $response->send();
 }catch(\Exception $e){//エラーになったらメッセージ
     echo 'Exception: ', $e->getMessage();
 }
-
-
 

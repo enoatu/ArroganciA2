@@ -8,7 +8,7 @@ class ResultController extends Controller
 
         include_once __dir__ . "/../../library/AddAssets.php";
 
-       $url  = $_SERVER["REQUEST_URI"];
+        $url  = $_SERVER["REQUEST_URI"];
         $url  = EditText::getEndText($url, '/');
        # $url = $this->params['params'];
         #$url  = "'" . $url . "'";#用意されていない？なんでことしなきゃいけないん？？

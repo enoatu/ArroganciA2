@@ -14,6 +14,7 @@ $di->set('router', function(){
        
         ]
     );
+
      $router->add(
         #'/index/register',
         '/:controller/(.+)',
