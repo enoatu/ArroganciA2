@@ -8,7 +8,6 @@ class IndexController extends Controller
         $this->view->title = "Home";
         $this->assets->addCss('css/index.css');
     }
-
     public function indexAction() {
     }
 

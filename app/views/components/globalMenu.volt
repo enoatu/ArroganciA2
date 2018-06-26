@@ -9,7 +9,7 @@
   </div>
  
   <img src="{{ url('img/ico.ico') }}" style="height: 80px; width: 80px; float : left">
-  <a href="#" id="title" class="navbar-brand" >{{ title }}</a>
+  <a href="#" id="title" class="navbar-brand" >ArroganciA</a>
     <div id="gnavi" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right" style="font-size: 23px">
       <li class="mtext"><a href="{{ url('useCase/index') }}">使い方</a></li>

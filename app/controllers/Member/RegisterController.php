@@ -17,30 +17,34 @@ class RegisterController extends Controller
             echo "exit";
             exit;
         }
+        try{
+            $Users = new Users();
+            $username = $this->request->getPost("username");
+            $email = $this->request->getPost("email");
+            $password = $this->request->getPost("password");
+            $success = $Users->save(
+                [
+                    'user_name' => $username,
+                    'user_email' => $email,
+                    'user_pass' => $password
+                ]
+            );
 
-        $username = $request->getPost("username");
-        $email = $request->getPost("email");
-        $password = $request->getPost("password");
-        $success = $text->save(
-            [
-                'username' => $username,
-                'email' => $email,
-                'password' => $password
-            ]
-        );
+            if ($success) {
+                $this->view->success = true;
+                $response = new Phalcon\Http\Response();
+                $response->redirect("index/index", false);
+                $response->send();
+                exit;
 
-        if ($success) {
-            $this->view->success = true;
-            $response = new Phalcon\Http\Response();
-            $response->redirect("index/index", false);
-            $response->send();
-            exit;
-
-        } else {
-            echo 'Sorry, Error';      
+            } else {
+                echo 'Sorry, Error';      
+            }
+        }catch(Exception $e){
+            echo $e;
         }
 
-        $this->view->disable();
+            $this->view->disable();
     }
 
         public function show404Action() {

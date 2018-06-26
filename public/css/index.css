@@ -1,15 +1,15 @@
 @media screen and (min-width:0px) {
-    body{
-        
+    #form-wrap{
+        margin: 0 20% ;
     }
     #title{
         height: 80px;
-        width: 200px;
-        font-size: 50px;
+        width: 150px;
+        font-size: 30px;
         line-height: 40px;
     }
     #wrap {
-        margin-top: 120px;
+        margin-top: 140px;
     }
 
     h1{
@@ -19,7 +19,7 @@
 
 @media screen and (max-width:480px) {
     /*　スマホ用*/
-
+   
    .mtext{
         font-size: 15px;
         padding: 1px;
@@ -31,10 +31,7 @@
         font-size: 30px;
     }
 
-
     #wrap {
         margin-top: 140px;
     }
-
-
 }

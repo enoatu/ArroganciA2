@@ -38,18 +38,26 @@
 
 
 <div id="wrap">
-<?php if (isset($registerd)) { ?>
- <div class="alert alert-success" role="alert">登録しました。<h3><b>3秒後</b>にログイン画面に移動します。</h3></div>
-<?php } ?>
-
 <h1>
-    ArroganciA
+   <?= $title ?>
 </h1>
-<?= $this->tag->form('index/register') ?>
-<?= $this->tag->textarea('text') ?>
-<p>
-<?= $this->tag->submitButton('Make') ?>
-</p>
+<div id="form-wrap" align="center" >
+<?= $this->tag->form(['register/register']) ?>
+ <div class="form-group">
+    <label>お名前</label>
+    <input type="text" name="username" class="form-control" placeholder="佐藤 花子" required>
+  </div>
+ <div class="form-group">
+    <label>メールアドレス</label>
+    <input type="email" name="email" class="form-control" placeholder="hanako@mail.com" required>
+  </div>
+<div class="form-group">
+    <label>パスワード</label>
+    <input type="password" name="password" class="form-control" placeholder="abcd1234" required>
+</div>
+<button type="submit" class="btn btn-default">以下に同意して登録</button>
+<?= $this->tag->endForm() ?>
+<div>
 </form>
 </div>
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>

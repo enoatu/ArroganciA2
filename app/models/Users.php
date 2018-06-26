@@ -1,7 +1,7 @@
 <?php
 use Phalcon\Mvc\Model;
 
-class Texts extends Model
+class Users extends Model
 {
     public $user_id;
     public $user_name;
@@ -9,5 +9,3 @@ class Texts extends Model
     public $user_pass;
     public $disp;
 }
-
-
