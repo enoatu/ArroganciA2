@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <title><?= $title ?></title>
-    <link rel="apple-touch-icon" href="<?= $this->url->get('img/ico.ico') ?>">
-    <link rel="icon" href="<?= $this->url->get('img/ico.ico') ?>">
-    <link rel="shortcut icon" href="<?= $this->url->get('img/ico.ico') ?>">
-    <meta name="viewport" content="width=device-width">
-    <?php $this->assets->outputCss(); ?>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-</head>
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top" style="min-height: 30px;">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#gnavi">
@@ -35,25 +22,4 @@
   </div>
 </nav>
 
-
-
-<div id="wrap">
-<?php if (isset($registerd)) { ?>
- <div class="alert alert-success" role="alert">登録しました。<h3><b>3秒後</b>にログイン画面に移動します。</h3></div>
-<?php } ?>
-
-<h1>
-    ArroganciA
-</h1>
-<?= $this->tag->form('index/register') ?>
-<?= $this->tag->textarea('text') ?>
-<p>
-<?= $this->tag->submitButton('Make') ?>
-</p>
-</form>
-</div>
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</body>
-<html>
 

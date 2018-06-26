@@ -2,11 +2,11 @@
 
 use Phalcon\Mvc\Controller;
 
-class IndexController extends Controller
+class LoginController extends Controller
 {
 
     public function indexAction() {
-        $ta
+        
     }
 
     public function registerAction() {

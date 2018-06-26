@@ -15,7 +15,9 @@ $loader = new Loader();
 $loader->registerDirs(
     [
         '../app/controllers/',
-        '../app/models/',
+        '../app/controllers/Member/',
+        '../app/controllers/Supports/',
+        '../app/models/'
     ]
 );
 
@@ -43,7 +45,11 @@ $di->set(
     'view',
     function(){
         $view =new View();
-        $view ->setViewsDir('../app/views/');
+        $view ->setViewsDir([
+            '../app/views/',
+            '../app/views/member/',
+            '../app/views/supports/'
+        ]);
         $view->registerEngines([
             '.volt' => function ($view, $di){
                 $volt = new Phalcon\Mvc\View\Engine\Volt($view, $di);
@@ -87,7 +93,6 @@ include __DIR__ . '/../config/routes.php';
 use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 
 //データベースサービスのセットアップ
-
 $di->set(
     'db',
     function(){
@@ -96,7 +101,7 @@ $di->set(
                 'host' => 'localhost',
                 'username' => 'user2',
                 'password' => 'pass',
-                'dbname' => 'hoge_phalcon',
+                'dbname' => 'user2db',
             ]
         );
     }

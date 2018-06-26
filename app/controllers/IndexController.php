@@ -4,26 +4,17 @@ use Phalcon\Mvc\Controller;
 
 class IndexController extends Controller
 {   
-    private function common() {
-        $this->session->get("user");
-        if (!$this->session->has("user")) {
-            $response = new Phalcon\Http\Response();
-            $response->redirect("/", false);
-            $response->send();
-            exit;
-        }
+    public function initialize() {
+        $this->view->title = "Home";
+        $this->assets->addCss('css/index.css');
     }
 
     public function indexAction() {
-       //$this->assets->addCss('css/index.css');
-             $this->view->title = "Home";
     }
 
-
     public function registerAction() {
-        $url     = md5(uniqid(rand(),1));
+        $url     = md5(uniqid(rand(), 1));
         $text    = new Texts();
-
         $success = $text->save(
             [
                'text' => $this->request->getPost('text'),
@@ -32,7 +23,6 @@ class IndexController extends Controller
         );
 
         if ($success) {
-
             #$this->view->disable();
             $response = new Phalcon\Http\Response();
             $response->redirect("result/$url", false);
@@ -50,7 +40,6 @@ class IndexController extends Controller
        $this->view->disable();
     }
 
-    
     public function show404Action() {
          echo "<a href='https://www.youtube.com/watch?v=EvBDa4TX3Bo'>NOT FOUND</a>";
     }

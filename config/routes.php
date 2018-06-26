@@ -11,7 +11,6 @@ $di->set('router', function(){
         [
             'controller' => 'index',
             'action'     => 'index',
-       
         ]
     );
 
@@ -23,7 +22,6 @@ $di->set('router', function(){
             'action'     => 2,
         ]
     );
-
 
     $router->add(
         '/result/:params',
