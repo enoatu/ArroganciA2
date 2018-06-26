@@ -1,0 +1,21 @@
+{
+  "name": "ArroganciA2",
+  "short_name": "ArgcA2",
+  "background_color": "#fc980c",
+  "icons": [{
+      "src": "./ico512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },{
+      "src": "./ico256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },{
+      "src": "./ico192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }],
+  "start_url": "https://enoatu.com/ArroganciA2/",
+  "display": "standalone",
+  "theme_color": "#e91e63"
+}
