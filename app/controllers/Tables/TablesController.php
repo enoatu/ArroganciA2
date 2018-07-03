@@ -1,16 +1,16 @@
 <?php
 use Phalcon\Mvc\Controller;
-use ArroganciA\Model\Tweet as Tweet;
 
-class TablesController extends Controller {   
+class TablesController extends Controller {
     public function initialize() {
         $this->assets->addCss('css/index.css', true);
         $this->assets->addJs("https://unpkg.com/react@0.13.3/dist/react.js", false);
         $this->assets->addJs("https://unpkg.com/react@0.13.3/dist/JSXTransformer.js", false);
-        $this->assets->addJs("js/reactSample.js", true);
+        $this->assets->addJs("js/checkAction.js", true);
     }
+
     public function indexAction() {
-        $model = new Tweet\app_tb2();
+        $model = new \ArroganciA\Model\PhqlExcuter();
         $data          = '';
         switch ($this->getTableName('kind')) {
         case 'app':
@@ -27,15 +27,20 @@ class TablesController extends Controller {
             $response = new Phalcon\Http\Response();
             $response->redirect("", false);
             $response->send();
-            exit;break;
+            exit;
         }
-        foreach($data as $datum){
-            var_dump($datum);
-        }
-
-       // var_dump($data);
-        //alt globalAction
-        exit;
+        //foreach($data as $datum){
+       //    var_dump($datum->tweet);
+      //  }
+      //  exit;
+        $currentPage = (int) $_GET["page"];
+        $paginator = new Phalcon\Paginator\Adapter\Model(array(
+            "data" => $data,
+            "limit" => 30,
+            "page" => $currentPage
+        ));
+        $page = $paginator->getPaginate();
+        $this->view->setVar("page", $page);
         $this->view->title = "グローバルテーブル";
     }
    
