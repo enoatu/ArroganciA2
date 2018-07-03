@@ -18,21 +18,21 @@ class RegisterController extends Controller
             exit;
         }
         try{
-            $Users = new Users();
+            $Users    = new Users();
             $username = $this->request->getPost("username");
-            $email = $this->request->getPost("email");
+            $email    = $this->request->getPost("email");
             $password = $this->request->getPost("password");
-            $success = $Users->save(
+            $success  = $Users->save(
                 [
-                    'user_name' => $username,
+                    'user_name'  => $username,
                     'user_email' => $email,
-                    'user_pass' => $password
+                    'user_pass'  => $password
                 ]
             );
 
             if ($success) {
                 $this->view->success = true;
-                $response = new Phalcon\Http\Response();
+                $response            = new Phalcon\Http\Response();
                 $response->redirect("index/index", false);
                 $response->send();
                 exit;

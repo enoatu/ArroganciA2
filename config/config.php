@@ -17,7 +17,16 @@ $loader->registerDirs(
         '../app/controllers/',
         '../app/controllers/Member/',
         '../app/controllers/Supports/',
-        '../app/models/'
+        '../app/controllers/Tables/',
+        '../app/models/',
+        '../app/models/Tweet/',
+        '../app/models/Iine/',
+    ]
+);
+$loader->registerNamespaces(
+    [
+        "ArroganciA\Model\Tweet" => "../app/models/Tweet/",
+        "ArroganciA\Model\Iine" => "../app/models/Iine/",
     ]
 );
 
@@ -89,6 +98,14 @@ include __DIR__ . '/../config/routes.php';
 //この目的は、リクエスト環境を初期化し、リクエストのルートを決め、発見したアクションを起動することであり、処理が完了した際にレスポンスを集約し、返却することです
 //
 //
+//
+use Phalcon\Mvc\Model\Manager as ModelsManager;
+$di->set(
+    "modelsManager",
+    function() {
+        return new ModelsManager();
+    }
+);
 
 use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 

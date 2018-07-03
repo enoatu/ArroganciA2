@@ -1,5 +1,5 @@
-{% include "components/header.volt" %}
-{% include "components/globalMenu.volt" %}
+{% include "layouts/header.volt" %}
+{% include "layouts/globalMenu.volt" %}
 <div id="wrap">
 {% if registerd is defined %}
  <div class="alert alert-success" role="alert">登録しました。<h3><b>3秒後</b>にログイン画面に移動します。</h3></div>
@@ -8,11 +8,24 @@
 <h1>
     ArroganciA
 </h1>
-{{ tag.form("index/register") }}
-{{ tag.textarea("text") }}
-<p>
-{{ tag.submitButton("Make") }}
-</p>
-</form>
+<p>グローバル</p>
+<div>
+    {{linkTo("tables/index/app", "アプリ")}}
+    {{linkTo("tables/index/game", "ゲーム")}}
+    {{linkTo("tables/index", "グローバルテーブル!")}}
+    {{linkTo("tables/index", "グローバルテーブル!")}}
+    {{linkTo("tables/index", "グローバルテーブル!")}}
 </div>
-{% include "components/footer.volt" %}
+<p>ローカル</p>
+<div>
+    {{linkTo("tables/index", "グローバルテーブル!")}}
+    {{linkTo("tables/index", "グローバルテーブル!")}}
+    {{linkTo("tables/index", "グローバルテーブル!")}}
+    {{linkTo("tables/index", "グローバルテーブル!")}}
+    {{linkTo("tables/index", "グローバルテーブル!")}}
+</div>
+
+
+
+</div>
+{% include "layouts/footer.volt" %}

@@ -1,5 +1,5 @@
-{% include "components/header.volt" %}
-{% include "components/globalMenu.volt" %}
+{% include "layouts/header.volt" %}
+{% include "layouts/globalMenu.volt" %}
 <div id="wrap">
 <h1>
    {{ title }}
@@ -23,4 +23,4 @@
 <div>
 </form>
 </div>
-{% include "components/footer.volt" %}
+{% include "layouts/footer.volt" %}
