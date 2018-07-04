@@ -29,7 +29,8 @@
     
     h1{
         color: #641;
-    } 
+    }
+
 }
 @media screen and (max-width:767px) {
     /*　スマホ用*/
@@ -41,8 +42,14 @@
      
     #title{
         width: 150px;
-        color: red;
         font-size: 30px;
+    }
+
+    #gnavi{
+        position: fixed;
+        top: 8%;
+        right : 1%;
+        background-color: #eee;
     }
 
     #wrap {

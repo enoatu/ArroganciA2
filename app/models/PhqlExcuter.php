@@ -23,7 +23,7 @@ class PhqlExcuter extends \Phalcon\Mvc\Model {
                 WHERE (user_id<>:user_id: OR user_id IS NULL)
                 AND CHAR_LENGTH( tw.tweet ) >=10
                 ORDER BY tw.tweet_id DESC
-                LIMIT 0,150";
+                LIMIT 0,1000";
             break;
         case "gl_site" :
             $sql = "SELECT tw.tweet,tw.sender_name,tw.account_name,tw.time,tw.tweet_id
@@ -62,7 +62,6 @@ class PhqlExcuter extends \Phalcon\Mvc\Model {
                 LIMIT 0,150";
             break;
         }
-                    var_dump($sql);
         return $this->modelsManager->createQuery($sql);
     }
 }

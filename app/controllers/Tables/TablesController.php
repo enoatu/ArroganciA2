@@ -4,6 +4,7 @@ use Phalcon\Mvc\Controller;
 class TablesController extends Controller {
     public function initialize() {
         $this->assets->addCss('css/index.css', true);
+        $this->assets->addCss('css/table/index.css', true);
         $this->assets->addJs("https://unpkg.com/react@0.13.3/dist/react.js", false);
         $this->assets->addJs("https://unpkg.com/react@0.13.3/dist/JSXTransformer.js", false);
         $this->assets->addJs("js/checkAction.js", true);

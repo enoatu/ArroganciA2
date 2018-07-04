@@ -8,27 +8,27 @@
 <table class="table table-hover">
     <thead>
         <tr width="400px">
-            <th>選択</th>
-            <th>ツイート</th>
-            <th>ユーザ名</th>
-            <th>日付</th>
+            <th class="table-head">選択</th>
+            <th class="table-head">ツイート</th>
+            <th class="table-head">ユーザ名</th>
+            <th class="table-head">日付</th>
         </tr>
     </thead>
     <tbody>
 {% set num = 0 %}
 {% for data in page.items %}
 {% set num = num + 1 %} 
-<tr width="400px">
-    <td onclick="getElementById('a+{{ num }}') . click();" class='td32'>
-        <input type='checkbox' id='a+{{ num }}'name='check[]' value='{{ data.tweet_id }}' onclick="getElementById('a+{{ num }}').click();show();">
+<tr>
+    <td onclick="getElementById('a+{{ num }}') . click();" class='list'>
+        <input type='checkbox' id='a+{{ num }}' class="checkbox" name='check[]' value='{{ data.tweet_id }}' onclick="getElementById('a+{{ num }}').click();show();">
     </td>
-    <td onclick="getElementById('a+{{ num }}') . click();" class='td32'>
+    <td onclick="getElementById('a+{{ num }}') . click();" class='list'>
         {{ data.tweet }}
     </td>
-    <td onclick="getElementById('a+{{ num }}') . click();" class='td32'>
+    <td onclick="getElementById('a+{{ num }}') . click();" class='list'>
         {{ data.sender_name }}
     </td>
-    <td onclick="getElementById('a+{{ num }}') . click();" class='td32'>
+    <td onclick="getElementById('a+{{ num }}') . click();" class='list'>
         {{ data.time }}
     </td>
 </tr> 
@@ -36,29 +36,31 @@
     </tbody>
 </table>
 </form>
-<nav>
+<nav id="pager">
     <ul class="pagination">
-        <li>
-            <a href="" aria-label="前のページへ">
-                <span aria-hidden="true">«</span>
+         <li>
+            <a href="{{ url('tables/index/app')}}" aria-label="最初のページへ">
+                <span aria-hidden="true">最初へ</span>
             </a>
         </li>
-        <li><a href="">1</a></li>
-        <li class="active"><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
         <li>
-            <a href="#" aria-label="次のページへ">
-                <span aria-hidden="true">»</span>
+            <a href="{{ url('tables/index/app?page=' ~ page.before )}}" aria-label="前のページへ">
+                <span aria-hidden="true">前へ</span>
             </a>
         </li>
+        <li class="disabled"><a href="#">{{ page.current ~ ' / ' ~ page.total_pages }}</a></li>
+        <li>
+            <a href="{{ url('tables/index/app?page=' ~ page.next) }}" aria-label="次のページへ">
+                <span aria-hidden="true">次へ</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('tables/index/app?page=' ~ page.last) }}" aria-label="最後のページへ">
+                <span aria-hidden="true">最後へ</span>
+            </a>
+        </li>
+
     </ul>
 </nav>
-{{ link_to('tables/index/app', '最初') }}
-{{ link_to('tables/index/app?page=' ~ page.before, '前へ') }}
-{{ link_to('#', page.current ~ ' / ' ~ page.total_pages) }}
-{{ link_to('tables/index/app?page=' ~ page.next, '次へ') }}
-{{ link_to('tables/index/app?page=' ~ page.last, '最後') }}
 </div>
 {% include "layouts/footer.volt" %}
