@@ -12,12 +12,12 @@ class TablesController extends Controller {
 
     public function indexAction() {
         $model = new \ArroganciA\Model\PhqlExcuter();
-        $data          = '';
+        $data  = '';
         switch ($this->getTableName('kind')) {
         case 'app':
             $data = $model->sqlExecute('gl_app');break;
         case 'site':
-            $data = $model->sqlExecut('gl_site');break;
+            $data = $model->sqlExecute('gl_site');break;
         case 'system':
             $data = $model->sqlExecute('gl_system');break;
         case 'game':
@@ -42,14 +42,15 @@ class TablesController extends Controller {
         ));
         $page = $paginator->getPaginate();
         $this->view->setVar("page", $page);
-        $this->view->title = "グローバルテーブル";
+        $this->view->setVar("kind", $this->getTableName('kind'));
+        $this->view->setVar("title", "のグローバルテーブル");
     }
    
     public function localAction() {
         $this->view->title = "ローカルテーブル";
     }
 
-      private function getTableName(string $parameter) {
+    private function getTableName(string $parameter) {
         $tableName = $this->dispatcher->getParam($parameter);
         var_dump($tableName);
         $tableName = $this->cutSlash($tableName);

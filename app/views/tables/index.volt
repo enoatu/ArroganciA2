@@ -2,7 +2,7 @@
 {% include "layouts/globalMenu.volt" %}
 <div id="wrap">
 <h1>
-    テーブル
+    {{ kind }}{{ title }}
 </h1>
 <form name="f1" action="post">
 <table class="table table-hover">
@@ -59,7 +59,6 @@
                 <span aria-hidden="true">最後へ</span>
             </a>
         </li>
-
     </ul>
 </nav>
 </div>

@@ -21,7 +21,6 @@
     #AAImg{
         height: 50px;
         float : left;
-
     }
     #wrap {
         margin-top: 140px;
@@ -30,7 +29,6 @@
     h1{
         color: #641;
     }
-
 }
 @media screen and (max-width:767px) {
     /*　スマホ用*/
@@ -50,6 +48,9 @@
         top: 8%;
         right : 1%;
         background-color: #eee;
+       /* background-color: #fff;*/
+        /*border: 1px #bbb;*/
+        
     }
 
     #wrap {
