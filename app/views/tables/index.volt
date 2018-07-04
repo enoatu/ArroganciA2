@@ -36,9 +36,28 @@
     </tbody>
 </table>
 </form>
+<nav>
+    <ul class="pagination">
+        <li>
+            <a href="" aria-label="前のページへ">
+                <span aria-hidden="true">«</span>
+            </a>
+        </li>
+        <li><a href="">1</a></li>
+        <li class="active"><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li>
+            <a href="#" aria-label="次のページへ">
+                <span aria-hidden="true">»</span>
+            </a>
+        </li>
+    </ul>
+</nav>
 {{ link_to('tables/index/app', '最初') }}
 {{ link_to('tables/index/app?page=' ~ page.before, '前へ') }}
-{{ link_to('#', page.current ~ '/' ~ page.total_pages) }}
+{{ link_to('#', page.current ~ ' / ' ~ page.total_pages) }}
 {{ link_to('tables/index/app?page=' ~ page.next, '次へ') }}
 {{ link_to('tables/index/app?page=' ~ page.last, '最後') }}
 </div>

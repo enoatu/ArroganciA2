@@ -1,23 +1,37 @@
 @media screen and (min-width:0px) {
+    #topbar{
+        height: 50px;
+    }
+
     #form-wrap{
         margin: 0 20% ;
     }
+    .mtext{
+        font-size: 0.7em;
+    }
     #title{
         height: 80px;
-        width: 150px;
-        font-size: 30px;
-        line-height: 40px;
+        font-size: 25px;
+    }
+    #AA {
+        position: fixed;
+        top: 1px;
+        left :1px;
+    }
+    #AAImg{
+        height: 50px;
+        float : left;
+
     }
     #wrap {
         margin-top: 140px;
     }
-
+    
     h1{
         color: #641;
-    }
+    } 
 }
-
-@media screen and (max-width:480px) {
+@media screen and (max-width:767px) {
     /*　スマホ用*/
    
    .mtext{
