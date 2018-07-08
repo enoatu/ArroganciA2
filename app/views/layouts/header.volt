@@ -7,9 +7,11 @@
     <link rel="shortcut icon" href="{{ url('img/ico.ico') }}">
     <meta name="viewport" content="width=device-width">
     <meta name="theme-color" content="#4285f4">
-    <?php $this->assets->outputCss(); ?>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="manifest" href="https://enoatu.com/ArroganciA2/manifest.json">
+    {{ assets.outputCss() }}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
+   <!-- <link rel="stylesheet" href="{{ url('css/bootstrap.min.css') }}">
+   <link rel="manifest" href="https://enoatu.com/ArroganciA2/manifest.json"> -->
 </head>
 <body>
  <script>

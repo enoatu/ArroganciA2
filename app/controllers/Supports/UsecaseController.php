@@ -2,11 +2,12 @@
 
 use Phalcon\Mvc\Controller;
 
-class IndexController extends Controller
+class UsecaseController extends Controller
 {
 
     public function indexAction() {
-        $ta
+        $this->view->title = "使い方"; 
+        $this->assets->addCss('css/index.css');
     }
 
     public function registerAction() {

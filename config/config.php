@@ -8,30 +8,7 @@
 //
 //
 //[1]オートローダの登録　アプリケーション内のコントローラやモデルなどのクラスをロードするために使用　　例としてPhalcon\Loaderコンポーネントを使用　
-use Phalcon\Loader;
-
-//例ではあらかじめ定義されたディレクトリに基づいてクラスを検索することにする	
-$loader = new Loader();
-$loader->registerDirs(
-    [
-        '../app/controllers/',
-        '../app/controllers/Member/',
-        '../app/controllers/Supports/',
-        '../app/controllers/Tables/',
-        '../app/models/',
-        '../app/models/Tweet/',
-        '../app/models/Iine/',
-    ]
-);
-$loader->registerNamespaces(
-    [
-        "ArroganciA\Model"       => "../app/models/",
-        "ArroganciA\Model\Tweet" => "../app/models/Tweet/",
-        "ArroganciA\Model\Iine"  => "../app/models/Iine/",
-    ]
-);
-
-$loader->register();
+include __DIR__ . '/../config/loader.php';
 
 //[2]依存性の管理
 //
@@ -49,34 +26,7 @@ $di = new FactoryDefault();
 //フレームワークが view ファイルを探すディレクトリを示す “view” サービスを登録します。
 //viewコンポーネントの組み立て
 //
-use Phalcon\Mvc\View;
-
-$di->set(
-    'view',
-    function(){
-        $view =new View();
-        $view ->setViewsDir([
-            '../app/views/',
-            '../app/views/member/',
-            '../app/views/supports/'
-        ]);
-        $view->registerEngines([
-            '.volt' => function ($view, $di){
-                $volt = new Phalcon\Mvc\View\Engine\Volt($view, $di);
-                $volt->setOptions([
-                    'compiledPath'      => '../cache/',
-                    'compiledSeparator' => '#',
-                    //'compiledAlways'    => true
-                ]);
-                $volt->getCompiler()->addFunction('number_format','number_format');
-                return $volt;
-            },
-          
-            ".phtml" => 'Phalcon\Mvc\View\Engine\Volt'
-        ]);
-        return $view;
-    }
-);
+include __DIR__ . '/view.php';
 
 //Phalconにより生成されるすべてのURIにtutorialが含まれるようにbase URIを登録します。
 //ハイパーリンクを生成するために、Phalcon\Tagを使用する際に重要になってきます。
@@ -94,12 +44,12 @@ $di->set(
     }
 );
 
-include __DIR__ . '/../config/routes.php';
+include __DIR__ . '/routes.php';
 //[3]リクエストの対処
 //この目的は、リクエスト環境を初期化し、リクエストのルートを決め、発見したアクションを起動することであり、処理が完了した際にレスポンスを集約し、返却することです
 //
-//
-//
+include __DIR__ . '/encrypt.php';
+
 use Phalcon\Mvc\Model\Manager as ModelsManager;
 $di->set(
     "modelsManager",
@@ -108,22 +58,7 @@ $di->set(
     }
 );
 
-use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
-
-//データベースサービスのセットアップ
-$di->set(
-    'db',
-    function(){
-        return new DbAdapter(
-            [
-                'host' => 'localhost',
-                'username' => 'user2',
-                'password' => 'pass',
-                'dbname' => 'user2db',
-            ]
-        );
-    }
-);
+include __DIR__ . '/db.php';
 
 //セッションのセットアップ
 use Phalcon\Session\Adapter\Files as Session;
@@ -134,7 +69,6 @@ $di->setShared('session', function(){
     return $session;
 });
 
-
 use Phalcon\Mvc\Application;
 
 $application = new Application($di);
@@ -142,8 +76,8 @@ try{
     //リクエストを処理する
     $response = $application->handle();
 
-$response->send();
-}catch(\Exception $e){//エラーになったらメッセージ
+    $response->send();
+} catch(\Exception $e) {//エラーになったらメッセージ
     echo 'Exception: ', $e->getMessage();
 }
 

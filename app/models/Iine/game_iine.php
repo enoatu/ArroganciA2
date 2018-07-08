@@ -1,7 +1,7 @@
 <?php
 namespace ArroganciA\Model\Iine;
 
-class app_iine extends base_iine {
+class game_iine extends base_iine {
 }
 
 

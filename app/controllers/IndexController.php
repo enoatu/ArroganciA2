@@ -7,6 +7,7 @@ class IndexController extends Controller
     public function initialize() {
         $this->view->title = "Home";
         $this->assets->addCss('css/index.css');
+        $this->authenticate();
     }
     public function indexAction() {
 
