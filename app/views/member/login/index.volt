@@ -1,7 +1,7 @@
 {% include "components/header.volt" %}
 {% include "components/globalMenu.volt" %}
 <h1>
-    ArroganciA
+    {{ title }}
 </h1>
 {{ tag.form("index/register") }}
 {{ tag.textarea("text") }}

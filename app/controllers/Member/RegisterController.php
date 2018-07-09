@@ -1,12 +1,9 @@
 <?php
-
-use Phalcon\Mvc\Controller;
+use ArroganciA\Controller\ControllerBase;
 use Phalcon\Security\Random;
 
-class RegisterController extends Controller
-{
+class RegisterController extends ControllerBase {
     public function initialize(){
-
         $this->view->title = "会員登録";
         $this->assets->addCss('css/index.css');
     }
@@ -48,7 +45,7 @@ class RegisterController extends Controller
                 $response->send();
                 exit;
             } else {
-                echo 'Sorry, Error';      
+                $this->logger->error('会員登録失敗');
             }
         }catch(Exception $e){
             echo $e;

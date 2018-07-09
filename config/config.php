@@ -8,7 +8,7 @@
 //
 //
 //[1]オートローダの登録　アプリケーション内のコントローラやモデルなどのクラスをロードするために使用　　例としてPhalcon\Loaderコンポーネントを使用　
-include __DIR__ . '/../config/loader.php';
+include __DIR__ . '/loader.php';
 
 //[2]依存性の管理
 //
@@ -16,6 +16,7 @@ include __DIR__ . '/../config/loader.php';
 //サービスコンテナは、アプリケーションが機能するために使用するサービスをグローバルに保存する入れ物?
 //Phalcon\Di は接着剤として機能
 //
+
 
 use Phalcon\Di\FactoryDefault;
 
@@ -58,6 +59,7 @@ $di->set(
     }
 );
 
+include __DIR__ . '/logger.php';
 include __DIR__ . '/db.php';
 
 //セッションのセットアップ

@@ -1,7 +1,8 @@
 <?php
-use Phalcon\Mvc\Controller;
+use ArroganciA\Controller\ControllerBase;
 
-class TablesController extends Controller {
+class TablesController extends ControllerBase {
+
     public function initialize() {
         $this->assets->addCss('css/index.css', true);
         $this->assets->addCss('css/table/index.css', true);

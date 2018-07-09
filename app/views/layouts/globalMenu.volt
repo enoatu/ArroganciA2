@@ -13,12 +13,12 @@
   </div>
     <div id="gnavi" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right" style="font-size: 23px">
-      <li class="mtext"><a href="{{ url('') }}">ホーム</a></li>
-      <li class="mtext"><a href="{{ url('usecase') }}">使い方</a></li>
-      <li class="mtext"><a href="{{ url('resign') }}">アカウント</a></li>
-      <li class="mtext"><a href="{{ url('request') }}">リクエスト</a></li>
-      <li class="mtext"><a href="{{ url('register') }}">登録する</a></li>
-      <li class="mtext"><a href="{{ url('share') }}">共有する</a></li>
+      <li class="mtext"><a class="url" href="{{ url('') }}">ホーム</a></li>
+      <li class="mtext"><a class="url" href="{{ url('usecase') }}">使い方</a></li>
+      <li class="mtext"><a class="url" href="{{ url('resign') }}">アカウント</a></li>
+      <li class="mtext"><a class="url" href="{{ url('request') }}">リクエスト</a></li>
+      <li class="mtext"><a class="url" href="{{ url('register') }}">登録する</a></li>
+      <li class="mtext"><a class="url" href="{ url('share') }}">共有する</a></li>
     </ul>
   </div>
 </nav>

@@ -1,9 +1,7 @@
 <?php
+use ArroganciA\Controller\ControllerBase;
 
-use Phalcon\Mvc\Controller;
-
-class RequestController extends Controller
-{
+class RequestController extends ControllerBase {
 
     public function indexAction() {
         $this->view->title = "要望・リクエスト";

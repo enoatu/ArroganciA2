@@ -12,7 +12,20 @@
     .mtext{
         font-size: 0.7em;
         border-left: solid 1px #aaa;
+        width: 95px;
+        text-align: center;
+        padding:0;
+        margin:0;
     }
+    .mtext:hover{
+        color: #fff;
+    }
+    .nav > .mtext >a.url {
+        /*padding: 10px 0 10px 0;*/
+        padding-right: 0;
+        padding-left: 0;
+    }
+
     #title{
         height: 80px;
         font-size: 25px;
@@ -54,7 +67,7 @@
         position: fixed;
         top: 8%;
         right : 1%;
-        background-color: #eee;
+        background-color: #fff;
         box-shadow: 4px 4px #ccc;
         
        /* background-color: #fff;*/

@@ -7,6 +7,7 @@
 <h1>
     {{ title }}
 </h1>
+<p>ようこそ{{ name }}さん</p>
 <div class="container">
     <div class="jumbotron">
         <h1>ArroganciAチュートリアル</h1>

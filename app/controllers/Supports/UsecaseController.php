@@ -1,9 +1,7 @@
 <?php
+use ArroganciA\Controller\ControllerBase;
 
-use Phalcon\Mvc\Controller;
-
-class UsecaseController extends Controller
-{
+class UsecaseController extends ControllerBase {
 
     public function indexAction() {
         $this->view->title = "使い方"; 

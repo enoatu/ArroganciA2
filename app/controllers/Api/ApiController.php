@@ -1,9 +1,9 @@
 <?php
 
-use Phalcon\Mvc\Controller;
+use ArroganciA\Controller;
 use ArroganciA\Model\Iine as iine;
 
-class ApiController extends Controller
+class ApiController extends ControllerBase
 {   
     public function indexAction() {
         $this->view->disable();
