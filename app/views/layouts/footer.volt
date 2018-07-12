@@ -4,5 +4,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script src="{{ url('js/post.js') }}"></script>
 {{ assets.outputJs() }}
+<script>
+    {% if info is defined and msg is defined %}
+         info({{ info }},{{ msg }});
+    {% endif %}
+    $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 </body>
 <html>

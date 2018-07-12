@@ -7,7 +7,8 @@
 <h1>
     {{ title }}
 </h1>
-<p>ようこそ{{ name }}さん</p>
+<p>ようこそ{% if name is defined %}{{ name }}{% else %}ゲストユーザ-
+{% endif %}さん</p>
 <div class="container">
     <div class="jumbotron">
         <h1>ArroganciAチュートリアル</h1>

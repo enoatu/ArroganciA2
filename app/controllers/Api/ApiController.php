@@ -1,6 +1,6 @@
 <?php
 
-use ArroganciA\Controller;
+use ArroganciA\Controller\ControllerBase;
 use ArroganciA\Model\Iine as iine;
 
 class ApiController extends ControllerBase
@@ -9,7 +9,6 @@ class ApiController extends ControllerBase
         $this->view->disable();
     }
     public function registerAction() {
-        $this->view->disable();
         if (!$this->request->isPost()) {
             exit;
         }

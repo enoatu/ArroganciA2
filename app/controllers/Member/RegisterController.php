@@ -4,7 +4,7 @@ use Phalcon\Security\Random;
 
 class RegisterController extends ControllerBase {
     public function initialize(){
-        $this->view->title = "会員登録";
+        $this->view->setVar("title", "会員登録");
         $this->assets->addCss('css/index.css');
     }
 
@@ -26,29 +26,64 @@ class RegisterController extends ControllerBase {
             $token         = $random->hex(36); // 05475e8af4a34f8f743ab48761
             $refresh_token = $random->hex(36); // 05475e8af4a34f8f743ab48761
             $token_expiry  = time() + (1 * 24 * 60 * 60);
-            $success       = $Users->save(
-                [
-                    'user_name'            => $username,
-                    'user_email'           => $email,
-                    'user_pass'            => $password,
-                    'uuid'                 => $uuid,
-                    'token'                => $token,
-                    'token_expiry'         => $token_expiry,
-                    'refresh_token'        => $refresh_token,
-                ]
-            );
+            $success       = $Users->save([
+                "conditions" => [
+                    'user_name'     => 1,
+                    'user_email'    => 2,
+                    'user_pass'     => 3,
+                    'uuid'          => 4,
+                    'token'         => 5,
+                    'token_expiry'  => 6,
+                    'refresh_token' => 7,
+                ],
+                "bind"  => [
+                    1    => $username,
+                    2    => $email,
+                    3    => $password,
+                    4    => $uuid,
+                    5    => $token,
+                    6    => $token_expiry,
+                    7    => $refresh_token,
+            ]]);
+
             if ($success) {
+                $Users->id;
+                $this->session->remove('user');
+                $this->session->set('user', [
+                    'id' => $Users->id,
+                    'name' => $username,
+                ]);
+                $this->session->remove('info');
+                $this->session->set('info', [
+                'info' => 'warn',
+                'msg'  => '登録に失敗しました'
+            ]);
+
                 $this->setCookie($uuid, $token, $refresh_token);
                 $this->view->success = true;
-                $response            = new Phalcon\Http\Response();
-                $response->redirect("index/index", false);
-                $response->send();
-                exit;
+                $Users = Users::findFirst([
+                    "conditions" => "uuid = ?1",
+                    "bind"       => [1 => $uuid]
+                    ]);
+                $this->logger->info($Users->user_id . ' ' . $username);
             } else {
                 $this->logger->error('会員登録失敗');
             }
+            $response            = new Phalcon\Http\Response();
+            $response->redirect("index/index", false);
+            $response->send();
+            exit;
         }catch(Exception $e){
-            echo $e;
+            $Users->id;
+            $this->session->set('info', [
+                'info' => 'warn',
+                'msg'  => '登録に失敗しました'
+            ]);
+            $response            = new Phalcon\Http\Response();
+            $response->redirect("index/index", false);
+            $response->send();
+            exit;
+           // echo $e;
         }
             $this->view->disable();
     }
@@ -72,8 +107,11 @@ class RegisterController extends ControllerBase {
         );
     }
 
-        public function show404Action() {
-            echo "<a href='https://www.youtube.com/watch?v=EvBDa4TX3Bo'>NOT FOUND</a>";
+
+    public function registerFailedAction() {
+        echo "会員登録に失敗しました。";
+        $this->logger->error('会員登録失敗-');
+        $this->view->setVar("title", "会員登録");
     }
 }
 

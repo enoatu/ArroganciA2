@@ -11,7 +11,7 @@
     }
     .mtext{
         font-size: 0.7em;
-        border-left: solid 1px #aaa;
+        /*border-left: solid 1px #aaa;*/
         width: 95px;
         text-align: center;
         padding:0;
@@ -20,6 +20,11 @@
     .mtext:hover{
         color: #fff;
     }
+    .url > img{
+        height: 30px;
+        width: 30px;
+    }
+    
     .nav > .mtext >a.url {
         /*padding: 10px 0 10px 0;*/
         padding-right: 0;
