@@ -41,6 +41,7 @@ class TablesController extends ControllerBase {
         $this->view->setVar("page", $page);
         $this->view->setVar("kind", $this->getTableName('kind'));
         $this->view->setVar("title", "のグローバルテーブル");
+        $this->view->setVar('global', 'global');
     }
    
     public function localAction() {
@@ -74,6 +75,7 @@ class TablesController extends ControllerBase {
         $this->view->setVar("page", $page);
         $this->view->setVar("kind", $this->getTableName('kind'));
         $this->view->setVar("title", "のローカルテーブル");
+        $this->view->setVar('local', 'local');
     }
 
     private function getTableName(string $parameter) {
