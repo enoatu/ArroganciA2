@@ -2,93 +2,103 @@
 use ArroganciA\Controller\ControllerBase;
 use Phalcon\Security\Random;
 
-class RegisterController extends ControllerBase {
-    public function initialize(){
-        $this->view->setVar("title", "ログイン");
-        $this->assets->addCss('css/index.css');
+class LoginController extends ControllerBase {
+    public function initialize() {
     }
 
     public function indexAction() {
+        $this->view->setVar("title", "ログイン");
+        $this->assets->addCss('css/index.css');
+        if ($this->session->has('info')) {
+            if ($this->session->get('info')['info']) {
+                $this->view->setVar('info', $this->session->get('info')['info']);
+                $this->view->setVar('msg', $this->session->get('info')['msg']);
+                $this->session->remove('info');
+            }
+        }
+        $this->assets->addJs('js/info.js');
     }
 
-    public function registerAction() {
+    public function loginAction() {
+        $response  = new Phalcon\Http\Response();
         if(!$this->request->isPost()) {
-            echo "exit";
+            $response->redirect("login/index", false);
             exit;
         }
-        try{
-            $Users         = new Users();
-            $username      = $this->request->getPost("username");
-            $email         = $this->request->getPost("email");
-            $password      = $this->request->getPost("password");
+        $nameOrMail = $this->request->getPost("nameOrMail",'string');
+        $password   = $this->request->getPost("password", 'string');
+        $response  = new Phalcon\Http\Response();
+        $user = $this->findUser($nameOrMail);
+        $this->logger->info("pass " . $password);
+        $this->logger->info("modelpass " . $user->user_pass);
+        if ($user && $this->security->checkHash($password, $user->user_pass)) {
             $random        = new Random();
-            $uuid          = $random->uuid();// db082997-2572-4e2c-a046-5eefe97b1235
             $token         = $random->hex(36); // 05475e8af4a34f8f743ab48761
             $refresh_token = $random->hex(36); // 05475e8af4a34f8f743ab48761
             $token_expiry  = time() + (1 * 24 * 60 * 60);
-
-            $df = Users::findFirst([
-                "conditions" => [
-                    'user_name'  => 1,
-                    'user_email' => 2,
-                    'user_pass'  => 3,
-                ],
-                "bind"  => [
-                    1    => $username,
-                    2    => $email,
-                    3    => $password,
-
-                ]);
-
-            $success       = $Users->save(
-                [
-                    'uuid'                 => $uuid,
-                    'token'                => $token,
-                    'token_expiry'         => $token_expiry,
-                    'refresh_token'        => $refresh_token,
-                ]
-            );
-           
-            if ($success) {
-                $Users->id;
-                $this->session->remove('user');
+            $regNewToken = $user->save([
+                'token'                => $token,
+                'token_expiry'         => $token_expiry,
+                'refresh_token'        => $refresh_token,
+            ]);
+            if ($regNewToken) {
                 $this->session->set('user', [
-                    'id' => $Users->id,
-                    'name' => $username,
+                    'id' => $user->user_id,
+                    'name' => $user->user_name,
                 ]);
-                $this->session->remove('info');
                 $this->session->set('info', [
-                'info' => 'warn',
-                'msg'  => 'ログインに失敗しました'
-            ]);
-
-                $this->setCookie($uuid, $token, $refresh_token);
-                $this->view->success = true;
-                $Users = Users::findFirst([
-                    "conditions" => "uuid = ?1",
-                    "bind"       => [1 => $uuid]
-                    ]);
-                $this->logger->info($Users->user_id . ' ' . $username);
-            } else {
-                $this->logger->error('会員登録失敗');
+                    'info' => 'success',
+                    'msg'  => 'ログインしました'
+                ]);
+                $this->setCookie($user->uuid, $token, $refresh_token);
+                $this->logger->info($user->user_id . ' ' . $user->user_name);
+                $response->redirect("index/index", false);
+            } else {  
+                $this->failedLoginDanger();
+                $response->redirect("login/index", false);
             }
-            $response            = new Phalcon\Http\Response();
-            $response->redirect("index/index", false);
-            $response->send();
-            exit;
-        }catch(Exception $e){
-            $Users->id;
-            $this->session->set('info', [
-                'info' => 'warn',
-                'msg'  => '登録に失敗しました'
-            ]);
-            $response            = new Phalcon\Http\Response();
-            $response->redirect("index/index", false);
-            $response->send();
-            exit;
-           // echo $e;
+        } else {
+            $this->failedLogin();
+            $response->redirect("login/index", false);
         }
-            $this->view->disable();
+        $response->send();
+        exit;
+    }
+
+    private function findUser($nom) {
+        $user  = Users::findFirstByUser_name($nom);
+        if ($user) return $user;
+        $user = Users::findFirstByUser_email($nom);
+        return $user;
+    }
+
+    private function failedLoginDanger() {
+        $this->session->set('info', [
+            'info' => 'danger',
+            'msg'  => 'ログインに失敗しました'
+        ]);
+        $this->logger->error('ログイン失敗danger');
+    }
+
+    private function failedLogin() {
+        $this->session->set('info', [
+            'info' => 'warning',
+            'msg'  => '入力されたユーザー名やパスワードが正しくありません。確認してからやりなおしてください。'
+        ]);
+        $this->logger->error('ログイン失敗');
+    }
+
+    private function failedSetCookie() {
+        $this->session->set('info', [
+            'info' => 'warning',
+            'msg'  => 'Cookieを有効にしてください。',
+        ]);
+        $this->session->remove('user');
+        $this->logger->error('クッキーセット失敗');
+        $response      = new Phalcon\Http\Response();
+        $response->redirect('login/index', false);
+        $response->send();
+        exit;
     }
 
     private function setCookie($uuid, $token, $refresh_token) {
@@ -101,7 +111,6 @@ class RegisterController extends ControllerBase {
             'ArroganciA_t',
             $token,
             time() + (365 * 24 * 60 * 60)
-
         );
         $this->cookies->set(
             'ArroganciA_r_t',

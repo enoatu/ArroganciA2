@@ -61,6 +61,7 @@ $di->set(
 
 include __DIR__ . '/logger.php';
 include __DIR__ . '/db.php';
+include __DIR__ . '/security.php';
 
 //セッションのセットアップ
 use Phalcon\Session\Adapter\Files as Session;

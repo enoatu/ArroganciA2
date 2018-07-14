@@ -6,7 +6,7 @@
 {{ assets.outputJs() }}
 <script>
     {% if info is defined and msg is defined %}
-         info({{ info }},{{ msg }});
+        {{ 'info("' ~ info ~ '", "' ~ msg ~ '");' }}
     {% endif %}
     $(function () {
             $('[data-toggle="tooltip"]').tooltip();

@@ -1,14 +1,13 @@
 {% include "layouts/header.volt" %}
 {% include "layouts/globalMenu.volt" %}
 <div id="wrap">
-{% if registerd is defined %}
- <div class="alert alert-success" role="alert">登録しました。<h3><b>3秒後</b>にログイン画面に移動します。</h3></div>
-{% endif %}
 <h1>
     {{ title }}
 </h1>
-<p>ようこそ{% if name is defined %}{{ name }}{% else %}ゲストユーザ-
-{% endif %}さん</p>
+<p>ようこそ{% if name is defined %}{{ name }}{% else %}ゲストユーザー{% endif %}さん</p>
+{% if name is not defined %}
+    {% include "index/guest.volt" %}
+{% endif %}
 <div class="container">
     <div class="jumbotron">
         <h1>ArroganciAチュートリアル</h1>

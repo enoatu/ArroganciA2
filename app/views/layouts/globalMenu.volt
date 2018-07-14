@@ -15,16 +15,16 @@
       <ul class="nav navbar-nav navbar-right" style="font-size: 23px">
           <li class="mtext"><a class="url" href="{{ url('') }}"><img src="{{ url('img/home.png') }}"></a></li>
           <li class="mtext"><div class="dropdown">
-                  <button class="url btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-toggle="tooltip" data-placement="left" title="ツールチップ（下）" data-delay="0">
+                  <button class="url btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
                       <img src="{{ url('img/db.png') }}">
                       <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" role="menu">
-                      <li role="presentation"><a href="{{ url('table/index/app') }}">アプリ</a></li>
-                      <li role="presentation"><a href="{{ url('table/index/site') }}">サイト</a></li>
-                      <li role="presentation"><a href="{{ url('table/index/service') }}">サービス</a></li>
-                      <li role="presentation"><a href="{{ url('table/index/system') }}">システム</a></li>
-                      <li role="presentation"><a href="{{ url('table/index/game') }}">ゲーム</a></li>
+                      <li role="presentation"><a href="{{ url('tables/index/app') }}">アプリ</a></li>
+                      <li role="presentation"><a href="{{ url('tables/index/site') }}">サイト</a></li>
+                      <li role="presentation"><a href="{{ url('tables/index/service') }}">サービス</a></li>
+                      <li role="presentation"><a href="{{ url('tables/index/system') }}">システム</a></li>
+                      <li role="presentation"><a href="{{ url('tables/index/game') }}">ゲーム</a></li>
                   </ul>
               </div>
           </li>
@@ -34,22 +34,29 @@
                       <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" role="menu">
-                      <li role="presentation"><a href="{{ url('table/local/app') }}">アプリ</a></li>
-                      <li role="presentation"><a href="{{ url('table/local/site') }}">サイト</a></li>
-                      <li role="presentation"><a href="{{ url('table/local/service') }}">サービス</a></li>
-                      <li role="presentation"><a href="{{ url('table/local/system') }}">システム</a></li>
-                      <li role="presentation"><a href="{{ url('table/local/game') }}">ゲーム</a></li>
+                      <li role="presentation"><a href="{{ url('tables/local/app') }}">アプリ</a></li>
+                      <li role="presentation"><a href="{{ url('tables/local/site') }}">サイト</a></li>
+                      <li role="presentation"><a href="{{ url('tables/local/service') }}">サービス</a></li>
+                      <li role="presentation"><a href="{{ url('tables/local/system') }}">システム</a></li>
+                      <li role="presentation"><a href="{{ url('tables/local/game') }}">ゲーム</a></li>
                   </ul>
               </div>
           </li>
           <li class="mtext"><a class="url" href="{{ url('usecase') }}"><img src="{{ url('img/usecase.png') }}"></a></li>
           <li class="mtext"><a class="url" href="{{ url('account') }}"><img src="{{ url('img/account.png') }}"></a></li>
-          <li class="mtext"><a class="url" href="{{ url('config') }}"><img src="{{ url('img/setting.png') }}"></a></li>
-
-              <!--<li class="mtext"><a class="url" href="{{ url('request') }}"><img src="{{ url('img/home.png') }}"></a></li>
-                  <li class="mtext"><a class="url" href="{{ url('register') }}"><img src="{{ url('img/home.png') }}"></a></li>
-                  <li class="mtext"><a class="url" href="{ url('share') }}"><img src="{{ url('img/home.png') }}"></a></li>
-                  <li class="mtext"><a class="url" href="{{ url('resign') }}"><img src="{{ url('img/star.png') }}"></a></li>-->
+          <li class="mtext"><div class="dropdown">
+                  <button class="url btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">                                <img src="{{ url('img/others.png') }}">
+                      <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                      <li role="presentation"><a href="{{ url('config') }}">設定</a></li>
+                      <li role="presentation"><a href="{{ url('share') }}">共有</a></li>
+                      <li role="presentation"><a href="{{ url('login') }}">別アカウントにログイン</a></li>
+                      <li role="presentation"><a href="{{ url('request') }}">要望・リクエスト</a></li>
+                      <li role="presentation"><a href="{{ url('logout') }}">ログアウト</a></li>
+                  </ul>
+              </div>
+          </li>
       </ul>
   </div>
 </nav>

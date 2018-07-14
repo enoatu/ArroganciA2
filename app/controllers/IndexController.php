@@ -8,22 +8,20 @@ class IndexController extends ControllerBase {
         if ($this->session->has('user')) {
             $this->view->name = $this->session->get('user')['name'];
         }
-
-        if ($this->session->has('info')) {
-            if ($this->session->get('info')['info']) {
-                $this->view->setVar('info', $this->session->get('info')['info']);
-                $this->view->setVar('msg', $this->session->get('info')['msg']);
-            }
+        if ($this->session->get('info')['info']) {
+            $this->view->setVar('info', $this->session->get('info')['info']);
+            $this->view->setVar('msg', $this->session->get('info')['msg']);
+            $this->session->remove('info');
         }
-           // $this->cookies->get('ArroganciA_u')->getValue();
+
+        // $this->cookies->get('ArroganciA_u')->getValue();
 
         $this->assets->addCss('css/index.css');
         $this->assets->addJs('js/info.js');
-        $this->authenticate();
     }
 
     public function indexAction() {
-
+        $this->authenticate();
     }
 
     public function show404Action() {

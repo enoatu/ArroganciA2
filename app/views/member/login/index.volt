@@ -7,14 +7,9 @@
 <div id="form-wrap" align="center" >
 {{ form('login/login') }}
  <div class="form-group">
-    <label>お名前</label>
-    <input type="text" name="username" class="form-control" placeholder="佐藤 花子" required>
-  </div>
+    <label>お名前またはメールアドレス</label>
+    <input type="text" name="nameOrMail" class="form-control" placeholder="佐藤 花子/hanako@gmail.com" required>
  <div class="form-group">
-    <label>メールアドレス</label>
-    <input type="email" name="email" class="form-control" placeholder="hanako@mail.com" required>
-  </div>
-<div class="form-group">
     <label>パスワード</label>
     <input type="password" name="password" class="form-control" placeholder="abcd1234" required>
 </div>
