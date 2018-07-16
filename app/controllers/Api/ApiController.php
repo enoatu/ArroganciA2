@@ -9,31 +9,41 @@ class ApiController extends ControllerBase
         $this->view->disable();
     }
     public function registerAction() {
-        if (!$this->request->isPost()) {
+        if (!$this->request->isPost() || !$this->request->isAjax()) {
+            $this->logger->error('not post');
             exit;
         }
         try {
-            $json_string = file_get_contents('php://input');
-            $postedData = json_decode($json_string, true);
-            var_dump($postedData);
+            $this->logger->info('access');
+           // var_dump($postedData);
             // if(!isset($iine)) echo json_encode($this->getJsonFail());// exit;
-            $kind     = $postedData['kind'];
-            $user_id  = $postedData['user_id'];
-            $tweet_id = $postedData['tweet_id'];
+            $tweet_id = $this->request->getPost('tweet_id', 'string');
+            $kind     = $this->request->getPost('kind', 'string');
+            $uuid     = $this->cookies->get('ArroganciA_u');
+            $this->logger->info($kind . $uuid . $tweet_id);
+            $user = Users::findFirstByUuid($uuid);
+            if (!$user) {
+                return json_encode($this->getJson('user not found'));
+            }
             $iine     = $this->selectTable($kind);
-            $success  = $iine->save(
+            if (!$iine) {
+                return json_encode($this->getJson('iine not found'));
+            }
+            $this->logger->info($user->user_id . " " . $tweet_id);
+            $success = $iine->save(
                 [
-                    'user_id'  => $user_id,
+                    'user_id'  => $user->user_id,
                     'tweet_id' => $tweet_id,
                 ]
             );
             if ($success) {
-                echo json_encode($this->getJson());
+                echo json_encode($this->getJson('success'));
             } else {
-                echo json_encode($this->getJsonFail());
+                echo json_encode($this->getJson('failed'));
             }
         } catch (Exception $e){
-           echo $e->getMessage();
+            echo $e->getMessage();
+            exit;
         }
     }
 
@@ -49,16 +59,12 @@ class ApiController extends ControllerBase
         return $iine;
     }
 
-    private function getJson() {
+    private function getJson($condition) {
+        $this->logger->error($condition);
         return [
-            'success'
+            $condition
         ];
-    }
 
-    private function getJsonFail() {
-        return [
-            'failed'
-        ];
     }
 
 

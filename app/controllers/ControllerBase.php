@@ -4,28 +4,32 @@ namespace ArroganciA\Controller;
 class ControllerBase extends \Phalcon\Mvc\Controller {
 
     public function baseInitialize() {
-        
     }
 
     public function output($code, $content=array()) {
-       //Header
+        //Header
         $this->response->setContentType('application/json')
-                       ->setStatusCode($code, null)
-                       ->sendHeaders();
+            ->setStatusCode($code, null)
+            ->sendHeaders();
         //Body
         $this->response->setJsonContent($content)
-                       ->send();   
+            ->send();   
     }
 
     public function authenticate() {
+        
+          $uuid  = $this->cookies->get('ArroganciA_u')->getValue();
+          $token = $this->cookies->get('ArroganciA_t')->getValue();
+
+        $this->logger->debug('ろぐなうaat'. $uuid . $token);
         $this->logger->debug('認証');
         if ($this->cookies->has('ArroganciA_u')) {
             $this->logger->debug('クッキー確認');
-            
             // Get the cookie
             $uuid  = $this->cookies->get('ArroganciA_u')->getValue();
             $token = $this->cookies->get('ArroganciA_t')->getValue();
-            if ($uuid = 'guest') $this->logger->notice('ゲストでログイン'); return;
+            $this->logger->debug('now cookie'. $uuid . $token);
+            if ($uuid == 'guest') $this->logger->notice('ゲストでログイン'); return;
             $users = \Users::findFirst(
                 [
                     'uuid  = :uuid:',
@@ -39,7 +43,7 @@ class ControllerBase extends \Phalcon\Mvc\Controller {
                 //トークンが等しいか
                 $this->logger->debug(date('Y/m/d') . '>?'. $users->token_expiry);
                 if (date('Y/m/d') > $users->token_expiry) {
-                $this->logger->debug('トークン期限確認');
+                    $this->logger->debug('トークン期限確認');
                     //期限切れかチェック
                     $this->updateExpire($users);
                 }
@@ -49,28 +53,31 @@ class ControllerBase extends \Phalcon\Mvc\Controller {
                 );
             }
         } else {
-            $this->cookies->set(
+            $this->logger->debug('クッキーもってない');
+            setcookie(
                 'ArroganciA_u',
                 'guest',
-                time() + (365 * 24 * 60 * 60)
+                time() + (365 * 24 * 60 * 60),
+                '/',
+                $this->url->get()
             );
-            $this->cookies->set(
+            setcookie(
                 'ArroganciA_t',
                 'guest',
-                time() + (365 * 24 * 60 * 60)
-
+                time() + (365 * 24 * 60 * 60),
+                '/',
+                $this->url->get()
             );
-            $this->cookies->set(
+            setcookie(
                 'ArroganciA_r_t',
                 'guest',
-                time() + (365 * 24 * 60 * 60)
+                time() + (365 * 24 * 60 * 60),
+                '/',
+                $this->url->get()
             );
-
-            // ゲストユーザ画面
-           // $response = new \Phalcon\Http\Response();
-          //  $response->redirect('', false);
-           // $response->send();
-         // exit;
+            $uuid  = $this->cookies->get('ArroganciA_u')->getValue();
+            $token = $this->cookies->get('ArroganciA_t')->getValue();
+            $this->logger->debug('ろmot'. $uuid . $token);
         }
     }
 
@@ -81,7 +88,7 @@ class ControllerBase extends \Phalcon\Mvc\Controller {
     }
 
     public function guestAction() {
-        
+
     }
 
 }

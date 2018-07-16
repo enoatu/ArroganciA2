@@ -8,5 +8,4 @@ class base_tb2 extends \Phalcon\Mvc\Model {
     public $account_name;
     public $tweet_id;
     public $time; 
-
 }

@@ -3,7 +3,7 @@
 <div id="wrap">
 <h1>
     {{ title }}
-</h1>
+</h1> 
 <p>ようこそ{% if name is defined %}{{ name }}{% else %}ゲストユーザー{% endif %}さん</p>
 {% if name is not defined %}
     {% include "index/guest.volt" %}

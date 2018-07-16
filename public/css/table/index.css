@@ -20,12 +20,9 @@
     width: 3%;
 }
 
-.checkbox{
-    width: 15px;
-    height: 15px; 
-    -webkit-transform: scale( 2 , 2 );
-    -moz-transform: scale( 2 , 2 );
-    vertical-align: middle;
+.list > button >img {
+    width: 20px;
+    height: 20px;
 }
 
 #popup{

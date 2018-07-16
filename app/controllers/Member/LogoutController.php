@@ -19,6 +19,13 @@ class LogoutController extends ControllerBase {
                 'msg'  => 'ログアウトしました。'
             ]);
         }
+        $uuid =  $this->cookies->get('ArroganciA_u');
+        $uuid->delete();
+        $token = $this->cookies->get('ArroganciA_t');
+        $token->delete();
+        $refresh_token = $this->cookies->get('ArroganciA_r_t');
+        $refresh_token->delete();
+
         $response  = new Phalcon\Http\Response();
         $response->redirect('index/index', false);
         $response->send();

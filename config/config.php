@@ -58,11 +58,10 @@ $di->set(
         return new ModelsManager();
     }
 );
-
 include __DIR__ . '/logger.php';
 include __DIR__ . '/db.php';
 include __DIR__ . '/security.php';
-
+include __DIR__ . '/cookies.php';
 //セッションのセットアップ
 use Phalcon\Session\Adapter\Files as Session;
 

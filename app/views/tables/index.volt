@@ -6,7 +6,6 @@
 </h1>
 
 <!-- table -->
-<form name="f1" action="post">
 <table class="table table-hover">
     <thead>
         <tr width="400px">
@@ -21,16 +20,16 @@
 {% for data in page.items %}
 {% set num = num + 1 %}
 <tr>
-    <td onclick="getElementById('a+{{ num }}') . click();" class='list'>
-        <input type='checkbox' id='a+{{ num }}' class="checkbox" name='check[]' value='{{ data.tweet_id }}' onclick="getElementById('a+{{ num }}').click();show();">
+    <td class='list'>
+        <button id='a{{ num }}' name='check[]' value='{{ data.tweet_id }}' onclick="post(a{{ num }},{{ data.tweet_id }});"><img src='{{ url('img/star.png') }}'></button>
     </td>
-    <td onclick="getElementById('a+{{ num }}') . click();" class='list'>
+    <td onclick="getElementById('a{{ num }}') . click();" class='list'>
         <div ondblclick="window.open('{{'https://twitter.com/' ~ data.account_name ~ '/status/'  ~ data.tweet_id }}')">{{ data.tweet }}</div>
     </td>
-    <td onclick="getElementById('a+{{ num }}') . click();" class='list'>
+    <td onclick="getElementById('a{{ num }}') . click();" class='list'>
         {{ data.sender_name }}
     </td>
-    <td onclick="getElementById('a+{{ num }}') . click();" class='list'>
+    <td onclick="getElementById('a{{ num }}') . click();" class='list'>
         {{ data.time }}
     </td>
 </tr> 
@@ -41,8 +40,6 @@
 <div id="popup">
     <button >ボタン</button>
 </div>
-
-</form>
 
 <!-- pager -->
 <nav id="pager">
