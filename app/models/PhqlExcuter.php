@@ -2,11 +2,11 @@
 namespace ArroganciA\Model;
 
 class PhqlExcuter extends \Phalcon\Mvc\Model {
-    public function sqlExecute($tableName) {
+    public function sqlExecute($tableName, $user_id) {
         $query = $this->sql($tableName);
         $output = $query->execute(
             [
-                'user_id' => "11",
+                'user_id' => $user_id,
             ]
         );
         return $output;

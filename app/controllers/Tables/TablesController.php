@@ -10,27 +10,31 @@ class TablesController extends ControllerBase {
     }
 
     public function indexAction() {
+        $user_id = $this->session->get('user')['id'];
         $model = new \ArroganciA\Model\PhqlExcuter();
         $data  = '';
         switch ($this->getTableName('kind')) {
         case 'app':
-            $data = $model->sqlExecute('gl_app');break;
+            $data = $model->sqlExecute('gl_app', $user_id);break;
         case 'site':
-            $data = $model->sqlExecute('gl_site');break;
+            $data = $model->sqlExecute('gl_site', $user_id);break;
         case 'system':
-            $data = $model->sqlExecute('gl_system');break;
+            $data = $model->sqlExecute('gl_system', $user_id);break;
         case 'game':
-            $data = $model->sqlExecute('gl_game');break;
+            $data = $model->sqlExecute('gl_game', $user_id);break;
         case 'service':
-            $data = $model->sqlExecute('gl_service');break;
+            $data = $model->sqlExecute('gl_service', $user_id);break;
         default:
             $response = new Phalcon\Http\Response();
             $response->redirect('', false);
             $response->send();
             exit;
         }
-
-        $currentPage = (int) $_GET['page'];
+        if (isset($_GET['page'])) {
+            $currentPage = (int) $_GET['page'];
+        } else { 
+            $currentPage = 1;
+        }
         $paginator = new Phalcon\Paginator\Adapter\Model(array(
             'data' => $data,
             'limit' => 30,
@@ -48,42 +52,44 @@ class TablesController extends ControllerBase {
     }
    
     public function localAction() {
+        $user_id = $this->session->get('user')['id'];
         $model = new \ArroganciA\Model\PhqlExcuter();
         $data  = '';
         switch ($this->getTableName('kind')) {
         case 'app':
-            $data = $model->sqlExecute('lo_app');break;
+            $data = $model->sqlExecute('lo_app', $user_id);break;
         case 'site':
-            $data = $model->sqlExecute('lo_site');break;
+            $data = $model->sqlExecute('lo_site', $user_id);break;
         case 'system':
-            $data = $model->sqlExecute('lo_system');break;
+            $data = $model->sqlExecute('lo_system', $user_id);break;
         case 'game':
-            $data = $model->sqlExecute('lo_game');break;
+            $data = $model->sqlExecute('lo_game', $user_id);break;
         case 'service':
-            $data = $model->sqlExecute('lo_service');break;
+            $data = $model->sqlExecute('lo_service', $user_id);break;
         default:
             $response = new Phalcon\Http\Response();
             $response->redirect('', false);
             $response->send();
             exit;
         }
-        $currentPage = (int) $_GET['page'];
+        if (isset($_GET['page'])) {
+            $currentPage = (int) $_GET['page'];
+        } else { 
+            $currentPage = 1;
+        }
         $paginator = new Phalcon\Paginator\Adapter\Model(array(
             'data' => $data,
             'limit' => 30,
             'page' => $currentPage
         ));
-
         $page = $paginator->getPaginate();
         $this->view->setVar('page', $page);
         $this->view->setVar('kind', $this->getTableName('kind'));
         $this->view->setVar('title', 'のローカルテーブル');
-        $this->view->setVar('local', 'local');
     }
 
     private function getTableName(string $parameter) {
         $tableName = $this->dispatcher->getParam($parameter);
-        var_dump($tableName);
         $tableName = $this->cutSlash($tableName);
         return $tableName;
     }

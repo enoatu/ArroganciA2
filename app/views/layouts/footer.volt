@@ -12,8 +12,5 @@
 {% if global is defined %}
 {% include "tables/global.volt" %}
 {% endif %}
-{% if local is defined %}
-{% include "tables/local.volt" %}
-{% endif %}
 </body>
 <html>

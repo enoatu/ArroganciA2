@@ -43,12 +43,16 @@ class RegisterController extends ControllerBase {
                 $this->session->set('user', [
                     'id' => $users->id,
                     'name' => $username,
+                    'uuid' => $uuid,
+                    'token' => $token,
+                    'refresh_token' => $refresh_token
                 ]);
                 $this->session->set('info', [
                     'info' => 'success',
-                    'msg'  => '登録が完了しました'
+                    'msg'  => '登録が完了しました',
+                    'setcookie' => false,
                 ]);
-                $this->setCookie($uuid, $token, $refresh_token);
+                //$this->setCookie($uuid, $token, $refresh_token);
                 $this->logger->info($users->user_id . ' ' . $username);
                 $response->redirect('index/index', false);
             } else {
@@ -70,24 +74,6 @@ class RegisterController extends ControllerBase {
             $e->getMessage();
         }
             //$this->view->disable();
-    }
-
-    private function setCookie($uuid, $token, $refresh_token){
-        $this->cookies->set(
-            'ArroganciA_u',
-            $uuid,
-            time() + (365 * 24 * 60 * 60)
-        );
-        $this->cookies->set(
-            'ArroganciA_t',
-            $token,
-            time() + (365 * 24 * 60 * 60)
-        );
-        $this->cookies->set(
-            'ArroganciA_r_t',
-            $refresh_token,
-            time() + (365 * 24 * 60 * 60)
-        );
     }
 }
 

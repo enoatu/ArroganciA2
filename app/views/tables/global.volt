@@ -4,13 +4,11 @@ function post(id, tweet_id) {
         type: 'post',
         url: '{{ url('Api/register') }}',
         data: {
-            'uuid': $.cookie('ArroganciA_u'),
+            'session_id': $.cookie('PHPSESSID'),
             'tweet_id': tweet_id,
             'kind': '{{ kind }}'
         },
         success: function(data) {
-            alert($.cookie('ArroganciA_u'));
-
             $(function(){
                 $(id).children('img').attr('src','{{ url('img/home.png') }}');
             });
