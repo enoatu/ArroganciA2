@@ -12,9 +12,8 @@ class ControllerBase extends \Phalcon\Mvc\Controller {
     }
 
     public function authenticate() {   
-
         //新規で入ってきた時
-        if (!isset($this->session->get('user')['uuid'])) {
+        if (!isset($this->session->get('user')['id'])) {
             $this->session->set('user', [
                 'id'   => '32',
                 'name' => 'ゲストユーザー',
@@ -23,15 +22,15 @@ class ControllerBase extends \Phalcon\Mvc\Controller {
             return;
         }
         //ゲストで入った時
-        if ( $this->session->get('user')['uuid'] == 'guest' ) {
-            //認証不要
-            $this->session->set('user', [
-                'id'   => 'guest',
-                'name' => 'guest',
-            ]);
-            $this->logger->notice('ゲストでログイン');
-            return;
-        }
+        //if ($this->session->get('user')['id'] == '32') {
+        //    //認証不要
+        //    $this->session->set('user', [
+        //        'id'   => '32',
+        //        'name' => 'ゲストユーザー',
+        //    ]);
+        //    $this->logger->notice('ゲストでログイン');
+        //    return;
+        //}
     }
 
 }
