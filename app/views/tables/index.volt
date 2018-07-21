@@ -21,7 +21,7 @@
 {% set num = num + 1 %}
 <tr>
     <td class='list'>
-        <button id='a{{ num }}' name='check[]' value='{{ data.tweet_id }}' onclick="post(a{{ num }},{{ data.tweet_id }});disabled = true;"><img src='{{ url('img/star.png') }}'></button>
+        <button id='a{{ num }}' name='check[]' value='{{ data.tweet_id }}' onclick="post(a{{ num }},'{{ data.tweet_id }}');disabled = true;"><img src='{{ url('img/star.png') }}'></button>
     </td>
     <td class='list'>
         <div ondblclick="window.open('{{'https://twitter.com/' ~ data.account_name ~ '/status/'  ~ data.tweet_id }}')">{{ data.tweet }}</div>

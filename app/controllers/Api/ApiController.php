@@ -18,13 +18,13 @@ class ApiController extends ControllerBase
             $tweet_id = $this->request->getPost('tweet_id', 'int');
             $kind     = $this->request->getPost('kind', 'string');
             $this->logger->info($kind . $tweet_id);
-            $session_id = $this->session->getId($this->cookies->get('session_id');
+            $session_id = $this->session->getId($this->cookies->get('session_id'));
             $this->session->start();
-            $user = Users::findFirstByUser_id($this->session->get('user')['id'];
+            $user = Users::findFirstByUser_id($this->session->get('user')['id']);
             if (!$user) {
                 return json_encode($this->getJson('user not found'));
             }
-            $iine     = $this->selectTable($kind);
+            $iine = $this->selectTable($kind);
             if (!$iine) {
                 return json_encode($this->getJson('iine not found'));
             }

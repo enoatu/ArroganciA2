@@ -10,6 +10,7 @@ function post(id, tweet_id) {
         },
         success: function(data) {
             $(function(){
+                console.log(tweet_id);
                 $(id).children('img').attr('src','<?= $this->url->get('img/home.png') ?>');
             });
         },

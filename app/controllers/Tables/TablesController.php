@@ -4,7 +4,6 @@ use ArroganciA\Controller\ControllerBase;
 class TablesController extends ControllerBase {
 
     public function initialize() {
-        $this->authenticate();
         $this->assets->addCss('css/index.css', true);
         $this->assets->addCss('css/table/index.css', true);
         $this->assets->addJs('https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js', false);
@@ -53,6 +52,8 @@ class TablesController extends ControllerBase {
     }
    
     public function localAction() {
+        $this->assets->addJs('js/checkAction.js', true);
+
         $user_id = $this->session->get('user')['id'];
         $model = new \ArroganciA\Model\PhqlExcuter();
         $data  = '';
