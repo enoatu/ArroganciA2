@@ -15,13 +15,12 @@ class ApiController extends ControllerBase
         }
         try {
             $this->logger->info('access');
-           // var_dump($postedData);
-            // if(!isset($iine)) echo json_encode($this->getJsonFail());// exit;
-            $tweet_id = $this->request->getPost('tweet_id', 'string');
+            $tweet_id = $this->request->getPost('tweet_id', 'int');
             $kind     = $this->request->getPost('kind', 'string');
-            $uuid     = $this->cookies->get('ArroganciA_u');
-            $this->logger->info($kind . $uuid . $tweet_id);
-            $user = Users::findFirstByUuid($uuid);
+            $this->logger->info($kind . $tweet_id);
+            $session_id = $this->session->getId($this->cookies->get('session_id');
+            $this->session->start();
+            $user = Users::findFirstByUser_id($this->session->get('user')['id'];
             if (!$user) {
                 return json_encode($this->getJson('user not found'));
             }

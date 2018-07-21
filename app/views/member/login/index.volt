@@ -15,7 +15,9 @@
 </div>
 <button type="submit" class="btn btn-default">ログイン</button>
 {{ end_form() }}
-<div>
-</form>
+</div>
+{{ form('login/guest') }}
+<button type="submit" class="btn btn-default">ゲストユーザーでログイン</button>
+{{ end_form() }}
 </div>
 {% include "layouts/footer.volt" %}

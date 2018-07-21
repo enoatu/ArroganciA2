@@ -4,6 +4,7 @@ use ArroganciA\Controller\ControllerBase;
 class TablesController extends ControllerBase {
 
     public function initialize() {
+        $this->authenticate();
         $this->assets->addCss('css/index.css', true);
         $this->assets->addCss('css/table/index.css', true);
         $this->assets->addJs('https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js', false);
@@ -25,21 +26,21 @@ class TablesController extends ControllerBase {
         case 'service':
             $data = $model->sqlExecute('gl_service', $user_id);break;
         default:
-            $response = new Phalcon\Http\Response();
-            $response->redirect('', false);
-            $response->send();
-            exit;
+            return $this->dispatcher->forward([
+                'controller' => 'index',
+                'action'     => 'index'
+            ]);
         }
         if (isset($_GET['page'])) {
             $currentPage = (int) $_GET['page'];
         } else { 
             $currentPage = 1;
         }
-        $paginator = new Phalcon\Paginator\Adapter\Model(array(
+        $paginator = new Phalcon\Paginator\Adapter\Model([
             'data' => $data,
             'limit' => 30,
             'page' => $currentPage
-        ));
+        ]);
 
         $page = $paginator->getPaginate();
         $this->view->setVar('page', $page);
@@ -67,21 +68,21 @@ class TablesController extends ControllerBase {
         case 'service':
             $data = $model->sqlExecute('lo_service', $user_id);break;
         default:
-            $response = new Phalcon\Http\Response();
-            $response->redirect('', false);
-            $response->send();
-            exit;
+            return $this->dispatcher->forward([
+                'controller' => 'index',
+                'action'     => 'index'
+            ]);          
         }
         if (isset($_GET['page'])) {
             $currentPage = (int) $_GET['page'];
         } else { 
             $currentPage = 1;
         }
-        $paginator = new Phalcon\Paginator\Adapter\Model(array(
+        $paginator = new Phalcon\Paginator\Adapter\Model([
             'data' => $data,
             'limit' => 30,
             'page' => $currentPage
-        ));
+        ]);
         $page = $paginator->getPaginate();
         $this->view->setVar('page', $page);
         $this->view->setVar('kind', $this->getTableName('kind'));
