@@ -12,7 +12,7 @@ class LoginController extends ControllerBase {
 
     public function loginAction() {
         if (!$this->request->isPost()) {
-            $this->redirect('login', 'index');
+            $this->redirect('login');
          }
         $nameOrMail = $this->request->getPost("nameOrMail",'string');
         $password   = $this->request->getPost("password", 'string');
@@ -24,7 +24,7 @@ class LoginController extends ControllerBase {
         if (!$user || !$this->security->checkHash($password, $user->user_pass)) {
              //find user failed
             $this->failedLogin();
-            return $this->redirect('login', 'index');
+            return $this->redirect('login');
         }
 
         //save new token success
@@ -36,7 +36,7 @@ class LoginController extends ControllerBase {
             'info' => 'success',
             'msg'  => 'ログインしました',
         ]); 
-        return $this->redirect('index', 'index');
+        return $this->redirect('index');
     }
 
     public function guestAction() {
@@ -48,7 +48,7 @@ class LoginController extends ControllerBase {
             'info' => 'success',
             'msg'  => 'ログインしました',
         ]); 
-        return $this->redirect('index', 'index');
+        return $this->redirect('index');
     }
 
     private function findUser($nom) {

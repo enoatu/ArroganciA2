@@ -91,16 +91,19 @@
 </h1>
 
 <!-- table -->
-<table class="table table-hover">
+<table class="table table-hover table-bordered table-condensed">
     <thead>
-        <tr width="400px">
-            <th class="table-head">選択</th>
-            <th class="table-head">ツイート</th>
-            <th class="table-head">ユーザ名</th>
-            <th class="table-head">日付</th>
+        <tr>
+            <th class="table-head col-xs-1">選択</th>
+            <th class="table-head col-xs-7">ツイート</th>
+            <th class="table-head col-xs-2">ユーザ名</th>
+            <th class="table-head col-xs-2">日付</th>
         </tr>
     </thead>
     <tbody>
+
+
+
 <?php $num = 0; ?>
 <?php foreach ($page->items as $data) { ?>
 <?php $num = $num + 1; ?>
@@ -121,37 +124,35 @@
 <?php } ?>
     </tbody>
 </table>
-<!-- popup -->
-<div id="popup">
-    <button >ボタン</button>
-</div>
-
+<!-- popup no-->
 <!-- pager -->
 <nav id="pager">
     <ul class="pagination">
          <li>
-            <a href="<?= $this->url->get('tables/index/app') ?>" aria-label="最初のページへ">
+            <a href="<?= $this->url->get('tables/index/' . $kind) ?>" aria-label="最初のページへ">
                 <span aria-hidden="true">最初へ</span>
             </a>
         </li>
         <li>
-            <a href="<?= $this->url->get('tables/index/app?page=' . $page->before) ?>" aria-label="前のページへ">
+            <a href="<?= $this->url->get('tables/index/' . $kind . '?page=' . $page->before) ?>" aria-label="前のページへ">
                 <span aria-hidden="true">前へ</span>
             </a>
         </li>
         <li class="disabled"><a href="#"><?= $page->current . ' / ' . $page->total_pages ?></a></li>
         <li>
-            <a href="<?= $this->url->get('tables/index/app?page=' . $page->next) ?>" aria-label="次のページへ">
+            <a href="<?= $this->url->get('tables/index/' . $kind . '?page=' . $page->next) ?>" aria-label="次のページへ">
                 <span aria-hidden="true">次へ</span>
             </a>
         </li>
         <li>
-            <a href="<?= $this->url->get('tables/index/app?page=' . $page->last) ?>" aria-label="最後のページへ">
+            <a href="<?= $this->url->get('tables/index/' . $kind . '?page=' . $page->last) ?>" aria-label="最後のページへ">
                 <span aria-hidden="true">最後へ</span>
             </a>
         </li>
     </ul>
 </nav>
+
+
 
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

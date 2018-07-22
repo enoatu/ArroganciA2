@@ -24,7 +24,7 @@
     {{linkTo("tables/index/game", "ゲーム")}}
     {{linkTo("tables/index/site", "サイト")}}
     {{linkTo("tables/index/service", "サービス")}}
-    {{linkTo("tables/index/sys", "システム")}}
+    {{linkTo("tables/index/system", "システム")}}
 </div>
 <p>ローカル</p>
 <div>  
@@ -32,7 +32,7 @@
     {{linkTo("tables/local/game", "ゲーム")}}
     {{linkTo("tables/local/site", "サイト")}}
     {{linkTo("tables/local/service", "サービス")}}
-    {{linkTo("tables/local/sys", "システム")}}
+    {{linkTo("tables/local/system", "システム")}}
 </div>
 </div>
 {% include "layouts/footer.volt" %}

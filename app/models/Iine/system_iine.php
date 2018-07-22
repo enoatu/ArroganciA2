@@ -1,7 +1,6 @@
 <?php
 namespace ArroganciA\Model\Iine;
 
-class sys_iine extends base_iine {
+class system_iine extends base_iine {
 }
-
 

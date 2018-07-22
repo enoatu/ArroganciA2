@@ -4,11 +4,9 @@ use ArroganciA\Controller\ControllerBase;
 class IndexController extends ControllerBase {
 
     public function initialize() { 
-      
     }
 
     public function indexAction() {
-
         $this->authenticate();
         $this->view->title = 'Home';
         if ($this->session->has('user')) {
@@ -22,11 +20,10 @@ class IndexController extends ControllerBase {
         }
         $this->assets->addCss('css/index.css');
         $this->assets->addJs('js/info.js');
-
     }
 
     public function show404Action() {
-         echo "<a href='https://www.youtube.com/watch?v=EvBDa4TX3Bo'>NOT FOUND</a>";
+        
     }
 }
 

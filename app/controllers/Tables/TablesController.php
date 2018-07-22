@@ -13,22 +13,21 @@ class TablesController extends ControllerBase {
     public function indexAction() {
         $kind = $this->getTableName('kind');
         $user_id = $this->session->get('user')['id'];
-        //if (!$data) return $this->redirect('index','show404');
-        $currentPage = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
         $data = $this->getDisplayTable(true, $kind, $user_id);
+        if (!$data) return $this->redirect('index','show404');
+        $currentPage = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
         var_dump($data);
         $paginator = new Phalcon\Paginator\Adapter\Model([
             'data'  => $data,
             'limit' => 30,
             'page'  => $currentPage
         ]);
-        $page = $this->view->setVar('page', $paginator->getPaginate());
+        $this->view->setVar('page', $paginator->getPaginate());
         $this->view->setVar('kind', $kind);
         $this->view->setVar('title', 'のグローバルテーブル');
         //global.volt
         $this->view->setVar('global', 'global');
         $this->view->setVar('user_id', $this->session->get('user')['id']);
-        //
     }
    
     public function localAction() {
@@ -36,22 +35,20 @@ class TablesController extends ControllerBase {
         $this->assets->addJs('js/checkAction.js', true);
         $user_id = $this->session->get('user')['id'];
         $data = $this->getDisplayTable(false, $kind, $user_id);
-       // if (!$data) return $this->redirect('index','show404');
+        //if (!$data) return $this->redirect('index','show404');
         $currentPage = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
         $paginator = new Phalcon\Paginator\Adapter\Model([
             'data' => $data,
             'limit' => 15,
             'page' => $currentPage
         ]);
-        $page = $this->view->setVar('page', $paginator->getPaginate());
+        $this->view->setVar('page', $paginator->getPaginate());
         $this->view->setVar('kind', $kind);
         $this->view->setVar('title', 'のローカルテーブル');
     }
 
     public function deleteAction() {
-        if (!$this->request->isPost()) {
-            return $this->postError($kind);
-        }
+        if (!$this->request->isPost()) return $this->postError($kind);
         $user_id   = $this->session->get('user')['id'];
         $tweet_ids = $this->request->getPost('check', 'int');
         $kind      = $this->getTableName('kind');
@@ -79,21 +76,17 @@ class TablesController extends ControllerBase {
             'info' => 'info',
             'msg'  => '削除しました',
         ]);
-        return $this->dispatcher->forward([
-            'controller' => 'tables',
-            'action'     => 'local',
-            'kind'       => $kind
-        ]);
+        return $this->redirect('tables', 'local', $kind);
     }
 
     private function getIineTable($kind) {
         $this->logger->info("getiine kind" . $kind);
         switch ($kind) {
-        case 'app'     : return new \ArroganciA\Model\Iine\app_iine(); break;
-        case 'site'    : return new \Iine\site_iine();   break;
-        case 'service' : return \Iine\service_iine();break;
-        case 'system'  : return \Iine\system_iine(); break;
-        case 'game'    : return \Iine\game_iine();   break;
+        case 'app'     : return new Iine\app_iine(); break;
+        case 'site'    : return new Iine\site_iine();   break;
+        case 'service' : return new Iine\service_iine();break;
+        case 'system'  : return new Iine\system_iine(); break;
+        case 'game'    : return new Iine\game_iine();   break;
         default : return;
         }
     }
@@ -108,11 +101,7 @@ class TablesController extends ControllerBase {
             'info' => 'warning',
             'msg'  => '削除に失敗しました',
         ]); 
-        return $this->dispatcher->forward([
-            'controller' => 'tables',
-            'action'     => 'local',
-            'kind'       => $kind
-        ]);
+        return $this->redirect('tables', 'local', $kind);
     }
 
     private function getDisplayTable($is_gl, $kind, $user_id) {

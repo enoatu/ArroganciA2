@@ -116,7 +116,7 @@
     <?= $this->tag->linkto('tables/index/game', 'ゲーム') ?>
     <?= $this->tag->linkto('tables/index/site', 'サイト') ?>
     <?= $this->tag->linkto('tables/index/service', 'サービス') ?>
-    <?= $this->tag->linkto('tables/index/sys', 'システム') ?>
+    <?= $this->tag->linkto('tables/index/system', 'システム') ?>
 </div>
 <p>ローカル</p>
 <div>  
@@ -124,7 +124,7 @@
     <?= $this->tag->linkto('tables/local/game', 'ゲーム') ?>
     <?= $this->tag->linkto('tables/local/site', 'サイト') ?>
     <?= $this->tag->linkto('tables/local/service', 'サービス') ?>
-    <?= $this->tag->linkto('tables/local/sys', 'システム') ?>
+    <?= $this->tag->linkto('tables/local/system', 'システム') ?>
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

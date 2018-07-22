@@ -37,10 +37,11 @@ class ControllerBase extends \Phalcon\Mvc\Controller {
         //}
     }
 
-    public function redirect($contoller, $action) {
+    public function redirect($contoller, $action = null, $kind = null) {
         return $this->dispatcher->forward([
             'controller' => $contoller,
-            'action' => $action,
+            'action'     => $action,
+            'kind'       => $kind,
         ]);
     }
 }

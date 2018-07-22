@@ -18,11 +18,7 @@ class LogoutController extends ControllerBase {
                 'info' => 'success',
                 'msg'  => 'ログアウトしました。'
             ]);
-            return $this->dispatcher->forward([
-                'controller' => 'index',
-                'action'     => 'index',
-            ]);
-
+            return $this->redirect('index');        
         }
     }
 }

@@ -1,11 +1,9 @@
 <?php
-# 
-# Atsushi ENOMOTO <enotiru@moove.co.jp>
-# moove Co., Ltd.
-
 $di->set('router', function(){
     $router = new \Phalcon\Mvc\Router(false);
     $router->removeExtraSlashes(true);
+
+        
     $router->add(
         '/',
         [
@@ -35,7 +33,7 @@ $di->set('router', function(){
         [
             'controller' => 1,
             'action'     => 2,
-            'kind'  => 3,
+            'kind'       => 3,
         ]
     );
 
@@ -46,16 +44,14 @@ $di->set('router', function(){
             'action'     => 2,
             'kind'       => 3,
             'parameter'  => 4,
-
         ]
     );
-
     $router->notFound(
         [
             'controller' => 'index',
             'action'     => 'show404'
         ]
     );
-
+    $router->handle();
     return $router;
 });
