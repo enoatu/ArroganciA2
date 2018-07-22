@@ -16,7 +16,6 @@ class TablesController extends ControllerBase {
         $data = $this->getDisplayTable(true, $kind, $user_id);
         if (!$data) return $this->redirect('index','show404');
         $currentPage = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
-        var_dump($data);
         $paginator = new Phalcon\Paginator\Adapter\Model([
             'data'  => $data,
             'limit' => 30,
