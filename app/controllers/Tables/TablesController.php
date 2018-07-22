@@ -22,9 +22,11 @@ class TablesController extends ControllerBase {
             'page'  => $currentPage
         ]);
         $this->view->setVar('page', $paginator->getPaginate());
-        $this->view->setVar('kind', $kind);
-        $this->view->setVar('title', 'のグローバルテーブル');
+        $this->view->setVar('toIndexorGlobal', 'local');
+        $this->view->setVar('reverseTitle', 'ローカルテーブルへ');
+        $this->view->setVar('title', $this->getMapTable($kind) . 'のグローバルテーブル');
         //global.volt
+        $this->view->setVar('kind', $kind);
         $this->view->setVar('global', 'global');
         $this->view->setVar('user_id', $this->session->get('user')['id']);
     }
@@ -41,9 +43,11 @@ class TablesController extends ControllerBase {
             'limit' => 15,
             'page' => $currentPage
         ]);
+        $this->view->setVar('toIndexorGlobal', 'index');
+        $this->view->setVar('reverseTitle', 'グローバルテーブルへ');
+        $this->view->setVar('title', $this->getMapTable($kind) . 'のローカルテーブル');
         $this->view->setVar('page', $paginator->getPaginate());
         $this->view->setVar('kind', $kind);
-        $this->view->setVar('title', 'のローカルテーブル');
     }
 
     public function deleteAction() {
@@ -118,6 +122,17 @@ class TablesController extends ControllerBase {
 
     private function cutSlash(string $str = null) {
         return substr($str, 1, strlen($str) - 1);
+    }
+
+    public function getMapTable($systemName) {
+        switch($systemName) {
+        case 'app'     : return 'アプリ';
+        case 'site'    : return 'ウェブサイト';
+        case 'service' : return 'サービス';
+        case 'system'  : return 'システム';
+        case 'game'    : return 'ゲーム';
+        default : return;
+        }
     }
 }
 

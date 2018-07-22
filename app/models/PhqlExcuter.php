@@ -21,6 +21,7 @@ class PhqlExcuter extends \Phalcon\Mvc\Model {
                 LEFT OUTER JOIN \ArroganciA\Model\Iine\app_iine
                 ON tw.tweet_id =\ArroganciA\Model\Iine\app_iine.tweet_id
                 WHERE (user_id<>:user_id: OR user_id IS NULL)
+                AND tw.tweet IS NOT NULL
                 ORDER BY tw.tweet_id DESC
                 LIMIT 0,1000";
             break;
@@ -30,6 +31,7 @@ class PhqlExcuter extends \Phalcon\Mvc\Model {
                 LEFT OUTER JOIN \ArroganciA\Model\Iine\site_iine
                 ON tw.tweet_id =\ArroganciA\Model\Iine\site_iine.tweet_id
                 WHERE (user_id<>:user_id: OR user_id IS NULL)
+                AND tw.tweet IS NOT NULL
                 ORDER BY tw.tweet_id DESC
                 LIMIT 0,1000";
             break;
@@ -39,6 +41,7 @@ class PhqlExcuter extends \Phalcon\Mvc\Model {
                 LEFT OUTER JOIN \ArroganciA\Model\Iine\service_iine
                 ON tw.tweet_id =\ArroganciA\Model\Iine\service_iine.tweet_id
                 WHERE (user_id<>:user_id: OR user_id IS NULL)
+                AND tw.tweet IS NOT NULL
                 ORDER BY tw.tweet_id DESC
                 LIMIT 0,1000";
             break;
@@ -48,6 +51,7 @@ class PhqlExcuter extends \Phalcon\Mvc\Model {
                 LEFT OUTER JOIN \ArroganciA\Model\Iine\system_iine
                 ON tw.tweet_id =\ArroganciA\Model\Iine\system_iine.tweet_id
                 WHERE (user_id<>:user_id: OR user_id IS NULL)
+                AND tw.tweet IS NOT NULL
                 ORDER BY tw.tweet_id DESC
                 LIMIT 0,1000";
             break;
@@ -57,6 +61,7 @@ class PhqlExcuter extends \Phalcon\Mvc\Model {
                 LEFT OUTER JOIN \ArroganciA\Model\Iine\game_iine
                 ON tw.tweet_id =\ArroganciA\Model\Iine\game_iine.tweet_id
                 WHERE (user_id<>:user_id: OR user_id IS NULL)
+                AND tw.tweet IS NOT NULL
                 ORDER BY tw.tweet_id DESC
                 LIMIT 0,1000";
             break;

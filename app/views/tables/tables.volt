@@ -1,8 +1,12 @@
 <div id="wrap">
 <h1>
-    {{ kind }}{{ title }}
+    {{ title }}
 </h1>
-
+{{ form('tables/' ~ toIndexorGlobal ~ '/' ~ kind) }}
+<h3>
+    <button type="submit" class="btn btn-default btn-lg"> {{ reverseTitle }} </button>
+</h3>
+{{ end_form() }}
 <!-- table -->
 <table class="table table-hover table-bordered table-condensed">
     <thead>

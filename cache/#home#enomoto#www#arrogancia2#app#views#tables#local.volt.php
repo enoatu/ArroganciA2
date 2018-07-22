@@ -87,9 +87,13 @@
 
 <div id="wrap">
 <h1>
-    <?= $kind ?><?= $title ?>
+    <?= $title ?>
 </h1>
-
+<?= $this->tag->form(['tables/' . $toIndexorGlobal . '/' . $kind]) ?>
+<h3>
+    <button type="submit" class="btn btn-default btn-lg"> <?= $reverseTitle ?> </button>
+</h3>
+<?= $this->tag->endForm() ?>
 <!-- table -->
 <table class="table table-hover table-bordered table-condensed">
     <thead>
