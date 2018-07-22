@@ -86,77 +86,36 @@
 </nav>
 
 <div id="wrap">
-<h1>
-    <?= $kind ?><?= $title ?>
-</h1>
-
-<!-- table -->
-<form name="f1" method="POST" action="<?= $this->url->get('tables/delete') . '/' . $kind ?>">
-<table class="table table-hover">
-    <thead>
-        <tr width="400px">
-            <th class="table-head">選択</th>
-            <th class="table-head">ツイート</th>
-            <th class="table-head">ユーザ名</th>
-            <th class="table-head">日付</th>
-        </tr>
-    </thead>
-    <tbody>
-<?php $num = 0; ?>
-<?php foreach ($page->items as $data) { ?>
-<?php $num = $num + 1; ?>
-<tr>
-    <td onclick="getElementById('a<?= $num ?>') . click();" class='list'>
-        <input type='checkbox' id='a<?= $num ?>' class="checkbox" name='check[]' value='<?= $data->tweet_id ?>' onclick="getElementById('a<?= $num ?>').click();show();">
-    </td>
-    <td class='list'>
-        <div ondblclick="window.open('<?= 'https://twitter.com/' . $data->account_name . '/status/' . $data->tweet_id ?>')"><?= $data->tweet ?></div>
-    </td>
-    <td class='list'>
-        <?= $data->sender_name ?>
-    </td>
-    <td onclick="getElementById('a<?= $num ?>') . click();" class='list'>
-        <?= $data->time ?>
-    </td>
-</tr> 
-<?php } ?>
-    </tbody>
-</table>
-<!-- popup -->
-<div id="popup">
-    <div id="in_popup">
-        
-        <button type="submit" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-trash"></span>　選択したものを消去する</button>
-    </div>
+<div class="page-header">
+    <h1>
+        <?= $title ?>
+    </h1>
 </div>
-</form>
-<!-- pager -->
-<nav id="pager">
-    <ul class="pagination">
-         <li>
-            <a href="<?= $this->url->get('tables/local/app') ?>" aria-label="最初のページへ">
-                <span aria-hidden="true">最初へ</span>
-            </a>
-        </li>
-        <li>
-            <a href="<?= $this->url->get('tables/local/app?page=' . $page->before) ?>" aria-label="前のページへ">
-                <span aria-hidden="true">前へ</span>
-            </a>
-        </li>
-        <li class="disabled"><a href="#"><?= $page->current . ' / ' . $page->total_pages ?></a></li>
-        <li>
-            <a href="<?= $this->url->get('tables/local/app?page=' . $page->next) ?>" aria-label="次のページへ">
-                <span aria-hidden="true">次へ</span>
-            </a>
-        </li>
-        <li>
-            <a href="<?= $this->url->get('tables/local/app?page=' . $page->last) ?>" aria-label="最後のページへ">
-                <span aria-hidden="true">最後へ</span>
-            </a>
-        </li>
-    </ul>
-</nav>
-
+<div>
+    <h3 align="left">あなたが需要のあるアプリ/webサイト/システム/etc.を探したい時 </h3>
+    <h3 align="left"><b>1</b> グローバルテーブルでそれを探します。</h2>
+    <h3 align="left"><b>2</b> いいものがあったらそれらを選択して[入]ボタンをクリック。
+    ローカルテーブルに追加されます</h2>
+    <h3 align="left"><b>3</b> これでアイディアをいつでも見たい時に見れます。需要があり、人の役に立つものを制作しましょう。</h2><img src="images/hellowork_computer.png">
+</div>
+<div class="page-header">
+    <h1 class="kojin">くわしい使い方</h1>
+</div>
+        ＊スライドが小さく表示されてしまう場合はブラウザのウィンドウサイズを上下させてみてください。
+    <div align="center" style="width: 100% ">
+        <h3 align="center">あなたが需要のあるアプリ/webサイト/システムを探したい時</h2><br>
+<!--    <iframe align="center" src='https://scitacjp-my.sharepoint.com/personal/s3701_scit_ac_jp/_layouts/15/guestaccess.aspx?docid=04ea0c6be70654f61bcaa9e4b58b60f78&authkey=AdjsmBXNmtnhMJYVK5DHKqE&action=embedview&wdAr=1.7777777777777777'-->
+<!--                width='100%' height='60%' frameborder='0'></iframe>-->
+        <iframe src="https://docs.google.com/presentation/d/114pri1tXzrA_OAQUF7ot8E8k4rjEb1rDAifGewlE0SM/embed?start=false&loop=false&delayms=60000"
+                frameborder="0" width="500px" height="500px" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+        <iframe src="https://docs.google.com/presentation/d/1TAwyYnpl1b_AkaRGLmOjLMVQCmOA70uX4xfMWh9ovHk/embed?start=false&loop=false&delayms=60000"
+                frameborder="0" width="500px" height="500px" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+    <table>
+        <tr>
+            <td><div class="kojin"><img src="images/2018pPiiP.gif" ></div></td>
+            <td><div>We don't adapt SSL yet,but We got PIIP.</div></td></tr></table>
+    <br>
+</div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -196,4 +155,5 @@ function post(id, tweet_id) {
 <?php } ?>
 </body>
 <html>
+
 

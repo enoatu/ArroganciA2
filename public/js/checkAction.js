@@ -3,18 +3,17 @@ var obj = document.f1.elements['check[]'];
 var len = obj.length;
 var target = document.getElementById('popup');
 function show() {
-    for (i = 0; i < len; i++) {
-        if (obj[i].checked === true) {
-            flag = true;
-            break;
-        } else {
-            flag=false;
-        }
-
+    if (!len) {
+        flag = obj.checked ? true : false;
+        return toggle();
     }
-    if (flag === true) {
-        target.style.visibility = "visible";
-        } else {
-        target.style.visibility = "hidden";
+    for (i = 0; i < len; i++) {
+        flag = obj[i].checked ? true : false;
+        if(flag) return toggle();
     }
 }
+
+function toggle() {
+  return target.style.visibility = flag ? "visible" : "hidden";
+}
+

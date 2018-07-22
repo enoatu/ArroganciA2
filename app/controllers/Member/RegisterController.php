@@ -22,10 +22,7 @@ class RegisterController extends ControllerBase {
     public function registerAction() {
         if (!$this->request->isPost()) {
             $this->logger->warn('postされませんでした');
-            return $this->dispatcher->forward([
-                'controller' => 'register',
-                'action'     => 'index'
-            ]);
+            return $this->redirect('register', 'index');
         }
         $user             = new Users;
         $username         = $this->request->getPost('username', 'string');
@@ -34,6 +31,7 @@ class RegisterController extends ControllerBase {
         $password         = $this->request->getPost('password');
         $user->user_pass  = $this->security->hash($password);
         $success          = $user->save();
+        $this->checkExistUser($username, $user->user_email);
 
         if (!$success) { 
             $this->logger->info($user->user_id . ' ' . $username);
@@ -42,27 +40,33 @@ class RegisterController extends ControllerBase {
                 'msg'  => '登録に失敗しました'
             ]);
             $this->logger->error('会員登録失敗');
-            return $this->dispatcher->forward([
-                'controller' => 'register',
-                'action'     => 'index'
-            ]);
+            return $this->redirect('register', 'index');
         }
-
         $this->session->set('user', [
-            'id' => $users->id,
+            'id'   => $users->id,
             'name' => $username,
         ]);
-
         $this->session->set('info', [
             'info' => 'success',
             'msg'  => '登録が完了しました',
         ]);
+        return $this->redirect('index', 'index');
+    }
 
-        return $this->dispatcher->forward([
-            'controller' => 'index',
-            'action'     => 'index'
+    private function checkExistUser($username, $email) {
+        $user  = Users::findFirstByUser_name($username);
+        if ($user) return $this->userExistError();
+        $user = Users::findFirstByUser_email($email);
+        return $this->userExistError();
+    }
+
+    private function userExistError () {
+        $this->logger->error('ユーザーがすでに存在しています');
+        $this->session->set('info', [
+            'info' => 'warning',
+            'msg'  => 'ユーザーがすでに存在しています',
         ]);
-
+        return $this->redirect('register', 'index');
     }
 }
 

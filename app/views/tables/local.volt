@@ -6,7 +6,7 @@
 </h1>
 
 <!-- table -->
-<form name="f1" action="post">
+<form name="f1" method="POST" action="{{ url('tables/delete') ~ '/' ~ kind }}">
 <table class="table table-hover">
     <thead>
         <tr width="400px">
@@ -39,7 +39,10 @@
 </table>
 <!-- popup -->
 <div id="popup">
-    <button type="submit">消去</button>
+    <div id="in_popup">
+        
+        <button type="submit" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-trash"></span>　選択したものを消去する</button>
+    </div>
 </div>
 </form>
 <!-- pager -->

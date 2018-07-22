@@ -1,5 +1,6 @@
 <?php
 use ArroganciA\Controller\ControllerBase;
+use ArroganciA\Model\Iine;
 
 class TablesController extends ControllerBase {
 
@@ -10,40 +11,19 @@ class TablesController extends ControllerBase {
     }
 
     public function indexAction() {
+        $kind = $this->getTableName('kind');
         $user_id = $this->session->get('user')['id'];
-        $model = new \ArroganciA\Model\PhqlExcuter();
-        $data  = '';
-        switch ($this->getTableName('kind')) {
-        case 'app':
-            $data = $model->sqlExecute('gl_app', $user_id);break;
-        case 'site':
-            $data = $model->sqlExecute('gl_site', $user_id);break;
-        case 'system':
-            $data = $model->sqlExecute('gl_system', $user_id);break;
-        case 'game':
-            $data = $model->sqlExecute('gl_game', $user_id);break;
-        case 'service':
-            $data = $model->sqlExecute('gl_service', $user_id);break;
-        default:
-            return $this->dispatcher->forward([
-                'controller' => 'index',
-                'action'     => 'index'
-            ]);
-        }
-        if (isset($_GET['page'])) {
-            $currentPage = (int) $_GET['page'];
-        } else { 
-            $currentPage = 1;
-        }
+        //if (!$data) return $this->redirect('index','show404');
+        $currentPage = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
+        $data = $this->getDisplayTable(true, $kind, $user_id);
+        var_dump($data);
         $paginator = new Phalcon\Paginator\Adapter\Model([
-            'data' => $data,
+            'data'  => $data,
             'limit' => 30,
-            'page' => $currentPage
+            'page'  => $currentPage
         ]);
-
-        $page = $paginator->getPaginate();
-        $this->view->setVar('page', $page);
-        $this->view->setVar('kind', $this->getTableName('kind'));
+        $page = $this->view->setVar('page', $paginator->getPaginate());
+        $this->view->setVar('kind', $kind);
         $this->view->setVar('title', 'のグローバルテーブル');
         //global.volt
         $this->view->setVar('global', 'global');
@@ -52,46 +32,98 @@ class TablesController extends ControllerBase {
     }
    
     public function localAction() {
+        $kind = $this->getTableName('kind');
         $this->assets->addJs('js/checkAction.js', true);
-
         $user_id = $this->session->get('user')['id'];
-        $model = new \ArroganciA\Model\PhqlExcuter();
-        $data  = '';
-        switch ($this->getTableName('kind')) {
-        case 'app':
-            $data = $model->sqlExecute('lo_app', $user_id);break;
-        case 'site':
-            $data = $model->sqlExecute('lo_site', $user_id);break;
-        case 'system':
-            $data = $model->sqlExecute('lo_system', $user_id);break;
-        case 'game':
-            $data = $model->sqlExecute('lo_game', $user_id);break;
-        case 'service':
-            $data = $model->sqlExecute('lo_service', $user_id);break;
-        default:
-            return $this->dispatcher->forward([
-                'controller' => 'index',
-                'action'     => 'index'
-            ]);          
-        }
-        if (isset($_GET['page'])) {
-            $currentPage = (int) $_GET['page'];
-        } else { 
-            $currentPage = 1;
-        }
+        $data = $this->getDisplayTable(false, $kind, $user_id);
+       // if (!$data) return $this->redirect('index','show404');
+        $currentPage = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
         $paginator = new Phalcon\Paginator\Adapter\Model([
             'data' => $data,
-            'limit' => 30,
+            'limit' => 15,
             'page' => $currentPage
         ]);
-        $page = $paginator->getPaginate();
-        $this->view->setVar('page', $page);
-        $this->view->setVar('kind', $this->getTableName('kind'));
+        $page = $this->view->setVar('page', $paginator->getPaginate());
+        $this->view->setVar('kind', $kind);
         $this->view->setVar('title', 'のローカルテーブル');
     }
 
-    private function getTableName(string $parameter) {
-        $tableName = $this->dispatcher->getParam($parameter);
+    public function deleteAction() {
+        if (!$this->request->isPost()) {
+            return $this->postError($kind);
+        }
+        $user_id   = $this->session->get('user')['id'];
+        $tweet_ids = $this->request->getPost('check', 'int');
+        $kind      = $this->getTableName('kind');
+        if (!isset($user_id, $tweet_ids, $kind)) return $this->postError($kind, '取得エラー');
+        //check
+        $iines   = [];
+        $iineObj = $this->getIineTable($kind);
+        if (!$iineObj) return $this->postError($kind, 'iineObj取得エラー');
+        foreach ($tweet_ids as $tweet_id) {
+            $iine = $iineObj::find([
+                    "user_id = :id: AND tweet_id = ?1",
+                    "bind" => [
+                        "id" => $user_id,
+                        1    => $tweet_id,
+                    ],
+                ]);
+            if (!$iine) return $this->postError($kind);
+            array_push($iines, $iine);
+        }
+        foreach ($iines as $target) {
+            $result = $target->delete();
+            if(!$result) return $this->postError($kind);
+        }
+        $this->session->set('info', [
+            'info' => 'info',
+            'msg'  => '削除しました',
+        ]);
+        return $this->dispatcher->forward([
+            'controller' => 'tables',
+            'action'     => 'local',
+            'kind'       => $kind
+        ]);
+    }
+
+    private function getIineTable($kind) {
+        $this->logger->info("getiine kind" . $kind);
+        switch ($kind) {
+        case 'app'     : return new \ArroganciA\Model\Iine\app_iine(); break;
+        case 'site'    : return new \Iine\site_iine();   break;
+        case 'service' : return \Iine\service_iine();break;
+        case 'system'  : return \Iine\system_iine(); break;
+        case 'game'    : return \Iine\game_iine();   break;
+        default : return;
+        }
+    }
+
+    private function postError($kind, $str = null) {
+        if (!isset($str)) {
+            $this->logger->error('postエラー');
+        } else {
+            $this->logger->error($str);
+        }
+        $this->session->set('info', [
+            'info' => 'warning',
+            'msg'  => '削除に失敗しました',
+        ]); 
+        return $this->dispatcher->forward([
+            'controller' => 'tables',
+            'action'     => 'local',
+            'kind'       => $kind
+        ]);
+    }
+
+    private function getDisplayTable($is_gl, $kind, $user_id) {
+        $model = new \ArroganciA\Model\PhqlExcuter();
+        $str = ($is_gl) ? 'gl': 'lo';
+        return $model->sqlExecute($str . '_' . $kind, $user_id);
+    }
+
+    private function getTableName($param) {
+        // table/index/appのindexやappを取り出す
+        $tableName = $this->dispatcher->getParam($param);
         $tableName = $this->cutSlash($tableName);
         return $tableName;
     }

@@ -25,14 +25,22 @@
     height: 20px;
 }
 
+
 #popup{
     visibility: hidden;
-    z-index: 1111;
-    background-color: #bbb;
     position: fixed;
-    bottom: 20px;
-    width: 100px;
-    height: 100px;
+    bottom: 70px;
+    width: 100%;
+    text-align: center;
+}
+
+
+.checkbox{
+   /* width: 70px;
+    height: 70px;*/
+    -webkit-transform: scale( 2 , 2 );
+    -moz-transform: scale( 2 , 2 );
+    vertical-align: middle;
 }
 
 #pager{

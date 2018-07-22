@@ -14,6 +14,7 @@ class PhqlExcuter extends \Phalcon\Mvc\Model {
 
     //  tw.tweet LIKE :worry: AND 
     private function sql($table){
+        echo "sql" . $table;
         switch ($table) {
         case "gl_app" :
             $sql = "SELECT tw.tweet,tw.sender_name,tw.account_name,tw.time,tw.tweet_id
