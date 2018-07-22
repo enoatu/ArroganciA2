@@ -74,10 +74,29 @@
         right : 1%;
         background-color: #fff;
         box-shadow: 4px 4px #ccc;
-        
        /* background-color: #fff;*/
         /*border: 1px #bbb;*/
-        
+    }
+
+    #move-menu1, #move-menu2, #move-menu3{
+        position: fixed;
+        top: 20%;
+        left: 40%;
+        background-color: #fff;
+        width: 70px;
+        border: solid 2px;
+        box-shadow: 4px 4px #ccc;
+    }
+    #move-menu1{
+        top: 20%;
+    }
+    
+    #move-menu2{
+        top: 25%;
+    }
+    
+    #move-menu3{
+        top: 45%;
     }
 
     #wrap {
