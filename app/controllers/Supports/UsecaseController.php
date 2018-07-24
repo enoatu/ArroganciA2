@@ -10,7 +10,7 @@ class UsecaseController extends ControllerBase {
 
     public function registerAction() {
 
-          }
+    }
     
     public function show404Action() {
          echo "<a href='https://www.youtube.com/watch?v=EvBDa4TX3Bo'>NOT FOUND</a>";

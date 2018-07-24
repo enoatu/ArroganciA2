@@ -17,12 +17,12 @@ $loader->registerDirs(
 );
 $loader->registerNamespaces(
     [
-        "ArroganciA\Model"       => "../app/models/",
-        "ArroganciA\Model\Tweet" => "../app/models/Tweet/",
-        "ArroganciA\Model\Iine"  => "../app/models/Iine/",
-        "ArroganciA\Controller"  => "../app/controllers/"
+        "ArroganciA\Model"             => "../app/models/",
+        "ArroganciA\Model\Tweet"       => "../app/models/Tweet/",
+        "ArroganciA\Model\Iine"        => "../app/models/Iine/",
+        "ArroganciA\Controller"        => "../app/controllers/",
+        "ArroganciA\Controller\Tables" => "../app/controllers/Tables/",
     ]
 );
-
 $loader->register();
 

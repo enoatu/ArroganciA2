@@ -21,14 +21,21 @@
         <h3 align="center">あなたが需要のあるアプリ/webサイト/システムを探したい時</h2><br>
 <!--    <iframe align="center" src='https://scitacjp-my.sharepoint.com/personal/s3701_scit_ac_jp/_layouts/15/guestaccess.aspx?docid=04ea0c6be70654f61bcaa9e4b58b60f78&authkey=AdjsmBXNmtnhMJYVK5DHKqE&action=embedview&wdAr=1.7777777777777777'-->
 <!--                width='100%' height='60%' frameborder='0'></iframe>-->
-        <iframe src="https://docs.google.com/presentation/d/114pri1tXzrA_OAQUF7ot8E8k4rjEb1rDAifGewlE0SM/embed?start=false&loop=false&delayms=60000"
+      <!--  <iframe src="https://docs.google.com/presentation/d/114pri1tXzrA_OAQUF7ot8E8k4rjEb1rDAifGewlE0SM/embed?start=false&loop=false&delayms=60000"
                 frameborder="0" width="500px" height="500px" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
         <iframe src="https://docs.google.com/presentation/d/1TAwyYnpl1b_AkaRGLmOjLMVQCmOA70uX4xfMWh9ovHk/embed?start=false&loop=false&delayms=60000"
                 frameborder="0" width="500px" height="500px" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-    <table>
+        -->
+        <!--<h3>ArroganciA発表（ショートver）</h3>
+        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTstuHA_Rvi0liQC7GPxy8nsOampjdg-ideyJQAXdNMAwHQiDb_jIwbSdRFz1esxKa-7pePWn3CdnKj/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>-->
+        <h3>ArroganciA2発表</h3>
+        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTJGu_9YfhIehfr0snODQmMaB6Q3yaigP3iFdfYsaZeVlmKQBd6a1fZu_LHmZ4uj9TiCxZAQurlHd0u/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+        <table>
         <tr>
             <td><div class="kojin"><img src="images/2018pPiiP.gif" ></div></td>
-            <td><div>We don't adapt SSL yet,but We got PIIP.</div></td></tr></table>
+            <td><div>We don't adapt SSL yet,but We got PIIP.</div></td>
+        </tr>
+        </table>
     <br>
 </div>
 </div>

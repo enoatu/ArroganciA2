@@ -44,11 +44,11 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" id="move-menu1" role="menu">
-                        <li role="presentation"><a href="<?= $this->url->get('tables/index/app') ?>">アプリ</a></li>
-                        <li role="presentation"><a href="<?= $this->url->get('tables/index/site') ?>">サイト</a></li>
-                        <li role="presentation"><a href="<?= $this->url->get('tables/index/service') ?>">サービス</a></li>
-                        <li role="presentation"><a href="<?= $this->url->get('tables/index/system') ?>">システム</a></li>
-                        <li role="presentation"><a href="<?= $this->url->get('tables/index/game') ?>">ゲーム</a></li>
+                        <li role="presentation"><a href="<?= $this->url->get('global/index/app') ?>">アプリ</a></li>
+                        <li role="presentation"><a href="<?= $this->url->get('global/index/site') ?>">サイト</a></li>
+                        <li role="presentation"><a href="<?= $this->url->get('global/index/service') ?>">サービス</a></li>
+                        <li role="presentation"><a href="<?= $this->url->get('global/index/system') ?>">システム</a></li>
+                        <li role="presentation"><a href="<?= $this->url->get('global/index/game') ?>">ゲーム</a></li>
                     </ul>
                 </div>
             </li>
@@ -58,11 +58,11 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" id="move-menu2" role="menu">
-                        <li role="presentation"><a href="<?= $this->url->get('tables/local/app') ?>">アプリ</a></li>
-                        <li role="presentation"><a href="<?= $this->url->get('tables/local/site') ?>">サイト</a></li>
-                        <li role="presentation"><a href="<?= $this->url->get('tables/local/service') ?>">サービス</a></li>
-                        <li role="presentation"><a href="<?= $this->url->get('tables/local/system') ?>">システム</a></li>
-                        <li role="presentation"><a href="<?= $this->url->get('tables/local/game') ?>">ゲーム</a></li>
+                        <li role="presentation"><a href="<?= $this->url->get('local/index/app') ?>">アプリ</a></li>
+                        <li role="presentation"><a href="<?= $this->url->get('local/index/site') ?>">サイト</a></li>
+                        <li role="presentation"><a href="<?= $this->url->get('local/index/service') ?>">サービス</a></li>
+                        <li role="presentation"><a href="<?= $this->url->get('local/index/system') ?>">システム</a></li>
+                        <li role="presentation"><a href="<?= $this->url->get('local/index/game') ?>">ゲーム</a></li>
                     </ul>
                 </div>
             </li>
@@ -89,7 +89,7 @@
 <h1>
     <?= $title ?>
 </h1>
-<?= $this->tag->form(['tables/' . $toIndexorGlobal . '/' . $kind]) ?>
+<?= $this->tag->form([$toLocalorGlobal . '/index/' . $kind]) ?>
 <h3>
     <button type="submit" class="btn btn-default btn-lg"> <?= $reverseTitle ?> </button>
 </h3>

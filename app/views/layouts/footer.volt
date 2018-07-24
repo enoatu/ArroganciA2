@@ -10,7 +10,7 @@
 {{ '<script>info("' ~ info ~ '", "' ~ msg ~ '");</script>' }}
 {% endif %}
 {% if global is defined %}
-{% include "tables/global.volt" %}
+{% include "tables/fav.volt" %}
 {% endif %}
 </body>
 <html>

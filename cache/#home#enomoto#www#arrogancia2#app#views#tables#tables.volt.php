@@ -2,7 +2,7 @@
 <h1>
     <?= $title ?>
 </h1>
-<?= $this->tag->form(['tables/' . $toIndexorGlobal . '/' . $kind]) ?>
+<?= $this->tag->form([$toLocalorGlobal . '/index/' . $kind]) ?>
 <h3>
     <button type="submit" class="btn btn-default btn-lg"> <?= $reverseTitle ?> </button>
 </h3>

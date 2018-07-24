@@ -20,11 +20,11 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" id="move-menu1" role="menu">
-                        <li role="presentation"><a href="{{ url('tables/index/app') }}">アプリ</a></li>
-                        <li role="presentation"><a href="{{ url('tables/index/site') }}">サイト</a></li>
-                        <li role="presentation"><a href="{{ url('tables/index/service') }}">サービス</a></li>
-                        <li role="presentation"><a href="{{ url('tables/index/system') }}">システム</a></li>
-                        <li role="presentation"><a href="{{ url('tables/index/game') }}">ゲーム</a></li>
+                        <li role="presentation"><a href="{{ url('global/index/app') }}">アプリ</a></li>
+                        <li role="presentation"><a href="{{ url('global/index/site') }}">サイト</a></li>
+                        <li role="presentation"><a href="{{ url('global/index/service') }}">サービス</a></li>
+                        <li role="presentation"><a href="{{ url('global/index/system') }}">システム</a></li>
+                        <li role="presentation"><a href="{{ url('global/index/game') }}">ゲーム</a></li>
                     </ul>
                 </div>
             </li>
@@ -34,11 +34,11 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" id="move-menu2" role="menu">
-                        <li role="presentation"><a href="{{ url('tables/local/app') }}">アプリ</a></li>
-                        <li role="presentation"><a href="{{ url('tables/local/site') }}">サイト</a></li>
-                        <li role="presentation"><a href="{{ url('tables/local/service') }}">サービス</a></li>
-                        <li role="presentation"><a href="{{ url('tables/local/system') }}">システム</a></li>
-                        <li role="presentation"><a href="{{ url('tables/local/game') }}">ゲーム</a></li>
+                        <li role="presentation"><a href="{{ url('local/index/app') }}">アプリ</a></li>
+                        <li role="presentation"><a href="{{ url('local/index/site') }}">サイト</a></li>
+                        <li role="presentation"><a href="{{ url('local/index/service') }}">サービス</a></li>
+                        <li role="presentation"><a href="{{ url('local/index/system') }}">システム</a></li>
+                        <li role="presentation"><a href="{{ url('local/index/game') }}">ゲーム</a></li>
                     </ul>
                 </div>
             </li>
