@@ -15,7 +15,7 @@ function info(kind, msg){
         "preventDuplicates": false,
         "showDuration": "300",
         "hideDuration": "1000",
-        "timeOut": "3000000",
+        "timeOut": "3000",
         "extendedTimeOut": "1000",
         "showEasing": "swing",
         "hideEasing": "linear",

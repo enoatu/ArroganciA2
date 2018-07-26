@@ -94,12 +94,12 @@
 <div>
     <h3 align="left">あなたが需要のあるアプリ/webサイト/システム/etc.を探したい時 </h3>
     <h3 align="left"><b>1</b> グローバルテーブルでそれを探します。</h2>
-    <h3 align="left"><b>2</b> いいものがあったらそれらを選択して[入]ボタンをクリック。
+    <h3 align="left"><b>2</b> いいものがあったらそれらを選択して☆ボタンをクリック。
     ローカルテーブルに追加されます</h2>
-    <h3 align="left"><b>3</b> これでアイディアをいつでも見たい時に見れます。需要があり、人の役に立つものを制作しましょう。</h2><img src="images/hellowork_computer.png">
+<h3 align="left"><b>3</b> これでアイディアをいつでも見たい時に見れます。需要があり、人の役に立つものを制作しましょう。</h2><img src="<?= $this->url->get('img/hellowork_computer.png') ?>">
 </div>
 <div class="page-header">
-    <h1 class="kojin">くわしい使い方</h1>
+    <h1 class="kojin">スライド</h1>
 </div>
         ＊スライドが小さく表示されてしまう場合はブラウザのウィンドウサイズを上下させてみてください。
     <div align="center" style="width: 100% ">
@@ -114,7 +114,7 @@
         <!--<h3>ArroganciA発表（ショートver）</h3>
         <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTstuHA_Rvi0liQC7GPxy8nsOampjdg-ideyJQAXdNMAwHQiDb_jIwbSdRFz1esxKa-7pePWn3CdnKj/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>-->
         <h3>ArroganciA2発表</h3>
-        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTJGu_9YfhIehfr0snODQmMaB6Q3yaigP3iFdfYsaZeVlmKQBd6a1fZu_LHmZ4uj9TiCxZAQurlHd0u/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+        <iframe id="slide" style="width:100%; height: 400px;" src="https://docs.google.com/presentation/d/e/2PACX-1vS35uzMKIOpbOBY3pzgy_7HZar_5sCYan1Z8w0YxN2xCQWJXKARSYmYaPMDr7HOZVZw8tLnF02dtVt4/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
         <table>
         <tr>
             <td><div class="kojin"><img src="images/2018pPiiP.gif" ></div></td>

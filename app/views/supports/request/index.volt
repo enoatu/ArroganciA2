@@ -16,7 +16,7 @@
   </div>
 <div class="form-group">
     <label>要望</label>
-    <textarea class="form-control" placeholder="要望を入力してください" required></textarea>
+    <textarea class="form-control" name="request" placeholder="要望を入力してください" required></textarea>
 </div>
 <button type="submit" class="btn btn-default">送信する</button>
 {{ end_form() }}
