@@ -49,11 +49,24 @@
     }
     h1{
         color: #641;
+    }  
+    #move-menu1, #move-menu2, #move-menu3{
+        width: 50px;
+        min-width: 100px;
     }
+    #move-menu3 {
+        width: 190px;
+    }
+    #toast-container {
+        position: fixed;
+        top: 7%;
+        right: 0%;
+    }
+
 }
 @media screen and (max-width:767px) {
     /*　スマホ用*/
-   .mtext{
+    .mtext{
         font-size: 15px;
         padding: 1px;
         border-left: solid 0;
@@ -70,36 +83,62 @@
         border: solid 1px;
         margin-bottom: 0;
         position: fixed;
-        top: 8%;
-        right : 1%;
+        top: 60px;
+        right : 10px;
         background-color: #fff;
         box-shadow: 4px 4px #ccc;
+        z-index: 20;
+        overflow:visible;
+
        /* background-color: #fff;*/
         /*border: 1px #bbb;*/
     }
-
     #move-menu1, #move-menu2, #move-menu3{
+        left: initial;
         position: fixed;
-        top: 20%;
-        left: 40%;
+        z-index : 100;
         background-color: #fff;
-        width: 70px;
         border: solid 2px;
         box-shadow: 4px 4px #ccc;
     }
     #move-menu1{
-        top: 20%;
+        right: 100px;
+        top: 150px;
     }
     
     #move-menu2{
-        top: 25%;
+        right: 100px;
+        top: 190px;
     }
     
     #move-menu3{
-        top: 45%;
+        right: 100px;
+        top: 300px;
     }
 
     #wrap {
         margin-top: 60px;
     }
+}
+
+/*@media screen and (-webkit-min-device-pixel-ratio:0) {
+    _::-webkit-full-page-media, _:future, :root 
+    #move-menu1, #move-menu2, #move-menu3{
+        position: fixed;
+        background-color: #eee;
+        right: 10px;
+    }
+    #gnavi{
+        height: 600px;
+        overflow:visible;
+    }
+    #move-menu1{
+    }
+    
+    #move-menu2{
+    }
+    
+    #move-menu3{
+    }
+
 }

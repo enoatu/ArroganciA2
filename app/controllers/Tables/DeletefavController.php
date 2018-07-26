@@ -1,7 +1,7 @@
 <?php
 use ArroganciA\Controller\Tables\TablesController;
-use \ArroganciA\Model\Iine;
-class DeleteController extends TablesController {
+use ArroganciA\Model\Iine;
+class DeletefavController extends TablesController {
     public function indexAction() {
         if (!$this->request->isPost()) return $this->postError($kind);
         $user_id   = $this->session->get('user')['id'];
@@ -31,7 +31,7 @@ class DeleteController extends TablesController {
             'info' => 'info',
             'msg'  => '削除しました',
         ]);
-        return $this->redirect('tables', 'local', $kind);
+        return $this->redirect('local', 'index', $kind);
     }
 
     private function getIineTable($kind) {
@@ -56,6 +56,6 @@ class DeleteController extends TablesController {
             'info' => 'warning',
             'msg'  => '削除に失敗しました',
         ]); 
-        return $this->redirect('tables', 'local', $kind);
+        return $this->redirect('local', 'index', $kind);
     }
 }

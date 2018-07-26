@@ -4,6 +4,7 @@ namespace ArroganciA\Model;
 class PhqlExcuter extends \Phalcon\Mvc\Model {
     public function sqlExecute($tableName, $user_id, $words = null) {      
         $query  = $this->sql($tableName, $this->concatWords($words));
+        if (!$query) return;
         $output = $query->execute(
             [
                 'user_id' => $user_id,
@@ -19,7 +20,7 @@ class PhqlExcuter extends \Phalcon\Mvc\Model {
             if ($word == '') return;
             $keywordCondition[] = 'tw.tweet LIKE "%' . $word . '%"';
         }
-        $keywordCondition = implode(' AND ', $keywordCondition);
+        $keywordCondition = " AND " . implode(' AND ', $keywordCondition);
         return $keywordCondition;
     }
 
@@ -33,8 +34,8 @@ class PhqlExcuter extends \Phalcon\Mvc\Model {
                 ON tw.tweet_id =\ArroganciA\Model\Iine\app_iine.tweet_id
                 WHERE (user_id<>:user_id: OR user_id IS NULL)
                 AND tw.tweet IS NOT NULL"
-                . $word
-                . " ORDER BY tw.tweet_id DESC
+                . $word . " " 
+                . "ORDER BY tw.tweet_id DESC
                 LIMIT 0,1000";
             break;
         case "gl_site" :
@@ -44,8 +45,8 @@ class PhqlExcuter extends \Phalcon\Mvc\Model {
                 ON tw.tweet_id =\ArroganciA\Model\Iine\site_iine.tweet_id
                 WHERE (user_id<>:user_id: OR user_id IS NULL)
                 AND tw.tweet IS NOT NULL"
-                . $word
-                . " ORDER BY tw.tweet_id DESC
+                . $word . " " 
+                . "ORDER BY tw.tweet_id DESC
                 LIMIT 0,1000";
             break;
         case "gl_service":
@@ -55,8 +56,8 @@ class PhqlExcuter extends \Phalcon\Mvc\Model {
                 ON tw.tweet_id =\ArroganciA\Model\Iine\service_iine.tweet_id
                 WHERE (user_id<>:user_id: OR user_id IS NULL)
                 AND tw.tweet IS NOT NULL"
-                . $word
-                . " ORDER BY tw.tweet_id DESC
+                . $word . " " 
+                . "ORDER BY tw.tweet_id DESC
                 LIMIT 0,1000";
             break;
         case "gl_system":
@@ -66,7 +67,7 @@ class PhqlExcuter extends \Phalcon\Mvc\Model {
                 ON tw.tweet_id =\ArroganciA\Model\Iine\system_iine.tweet_id
                 WHERE (user_id<>:user_id: OR user_id IS NULL)
                 AND tw.tweet IS NOT NULL"
-                . "AND tw.tweet=:word:"
+                . $word . " " 
                 . "ORDER BY tw.tweet_id DESC
                 LIMIT 0,1000";
             break;
@@ -77,7 +78,7 @@ class PhqlExcuter extends \Phalcon\Mvc\Model {
                 ON tw.tweet_id =\ArroganciA\Model\Iine\game_iine.tweet_id
                 WHERE (user_id<>:user_id: OR user_id IS NULL)
                 AND tw.tweet IS NOT NULL"
-                . "AND tw.tweet=:word:"
+                . $word . " " 
                 . "ORDER BY tw.tweet_id DESC
                 LIMIT 0,1000";
             break;
@@ -86,7 +87,7 @@ class PhqlExcuter extends \Phalcon\Mvc\Model {
                 FROM \ArroganciA\Model\Tweet\app_tb2 as app_tb2
                 JOIN \ArroganciA\Model\Iine\app_iine ON app_tb2.tweet_id =\ArroganciA\Model\Iine\app_iine.tweet_id
                 WHERE user_id=:user_id:"
-                . "AND tweet=:word:"
+                . $word . " " 
                 . "ORDER BY \ArroganciA\Model\Iine\app_iine.tweet_id DESC";
         break;
         case "lo_site":
@@ -94,7 +95,7 @@ class PhqlExcuter extends \Phalcon\Mvc\Model {
                 FROM \ArroganciA\Model\Tweet\site_tb2 as site_tb2
                 JOIN \ArroganciA\Model\Iine\site_iine ON site_tb2.tweet_id =\ArroganciA\Model\Iine\site_iine.tweet_id
                 WHERE user_id=:user_id:"
-                . "AND tweet=:word:"
+                . $word . " " 
                 . "ORDER BY \ArroganciA\Model\Iine\site_iine.tweet_id DESC";
         break;
         case "lo_service":
@@ -102,7 +103,7 @@ class PhqlExcuter extends \Phalcon\Mvc\Model {
                 FROM \ArroganciA\Model\Tweet\service_tb2 as service_tb2
                 JOIN \ArroganciA\Model\Iine\service_iine ON service_tb2.tweet_id =\ArroganciA\Model\Iine\service_iine.tweet_id
                 WHERE user_id=:user_id:"
-                . "AND tweet=:word:"
+                . $word . " " 
                 . "ORDER BY \ArroganciA\Model\Iine\service_iine.tweet_id DESC";
         break;
         case "lo_system":
@@ -110,7 +111,7 @@ class PhqlExcuter extends \Phalcon\Mvc\Model {
                 FROM \ArroganciA\Model\Tweet\system_tb2 as system_tb2
                 JOIN \ArroganciA\Model\Iine\system_iine ON system_tb2.tweet_id =\ArroganciA\Model\Iine\system_iine.tweet_id
                 WHERE user_id=:user_id:"
-                . "AND tweet=:word:"
+                . $word . " " 
                 . "ORDER BY \ArroganciA\Model\Iine\system_iine.tweet_id DESC";
         break;
         case "lo_game" :
@@ -118,10 +119,11 @@ class PhqlExcuter extends \Phalcon\Mvc\Model {
                 FROM \ArroganciA\Model\Tweet\game_tb2 as game_tb2
                 JOIN \ArroganciA\Model\Iine\game_iine ON game_tb2.tweet_id =\ArroganciA\Model\Iine\game_iine.tweet_id
                 WHERE user_id=:user_id:"
-                . "AND tweet=:word:"
+                . $word . " " 
                 . "ORDER BY \ArroganciA\Model\Iine\game_iine.tweet_id DESC";
-        break;
+           break;
         }
+        if (!$sql) return;
         return $this->modelsManager->createQuery($sql);
     }
 }

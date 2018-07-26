@@ -5,7 +5,7 @@
 {% set num = 0 %}
 {% for data in page.items %}
 {% set num = num + 1 %}
-<form name="f1" method="POST" action="{{url('tables/delete/' ~ kind)}}">
+<form name="f1" method="POST" action="{{url('deletefav/index/' ~ kind)}}">
 <tr>
     <td onclick="getElementById('a{{ num }}') . click();" class='list'>
         <input type='checkbox' id='a{{ num }}' class="checkbox" name='check[]' value='{{ data.tweet_id }}' onclick="getElementById('a{{ num }}').click();show();">
@@ -26,8 +26,8 @@
 <!-- popup -->
 <div id="popup">
     <div id="in_popup">
-        
-        <button type="submit" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-trash"></span>　選択したものを消去する</button>
+        <button type="submit" class="btn btn-primary btn-lg">
+            <span class="glyphicon glyphicon-trash"></span>　選択したものを消去する</button>
     </div>
 </div>
 </form>

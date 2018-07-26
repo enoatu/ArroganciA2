@@ -1,8 +1,16 @@
-.table{
+html, body {
+    height: 100%;
+}
+h2 {
+    text-align: center;
+}
+
+.table {
     padding: 0px;
     margin: 0px;
     /*table-layout: fixed;*/
 }
+
 /*
 .table-head{
     text-align: center;
@@ -26,8 +34,19 @@
     height: 20px;
 }
 
+#reverseTitle {
+    text-align: center;
+}
+#searchForm {
+    display: table;
+    position: absolute;
+    width: 100%;
+    text-align:center;
+    max-width: 600px;
+}
 
 #popup{
+    z-index: 100;
     visibility: hidden;
     position: fixed;
     bottom: 70px;
@@ -35,7 +54,9 @@
     text-align: center;
 }
 
-
+#allDispButton {
+    display: table-cell;
+}
 .checkbox{
    /* width: 70px;
     height: 70px;*/
@@ -45,6 +66,7 @@
 }
 
 #pager{
+       width: 100%;
     text-align: center;
 }
 

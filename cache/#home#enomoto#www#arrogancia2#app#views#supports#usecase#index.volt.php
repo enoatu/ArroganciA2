@@ -86,92 +86,43 @@
 </nav>
 
 <div id="wrap">
-<h2>
-    <?= $title ?>
-</h2>
-<?= $this->tag->form([$toLocalorGlobal . '/index/' . $kind]) ?>
-<div class="input-group" id="searchForm">
-    <input type="text" class="form-control" value="<?= $postedWords ?>" placeholder="例) android おもしろい" name="words">
-    <span class="input-group-btn">
-        <button type="submit" class="btn btn-default">絞り込み</button>
-    </span>
+<div class="page-header">
+    <h1>
+        <?= $title ?>
+    </h1>
 </div>
-<?= $this->tag->endForm() ?>
-<?= $this->tag->form([$toLocalorGlobal . '/index/' . $kind]) ?>
-<button type="submit" class="btn btn-default">全表示</button>
-<?= $this->tag->endForm() ?>
-
-<?= $this->tag->form([$toReLocalorGlobal . '/index/' . $kind]) ?>
-<h3>
-    <button type="submit" class="btn btn-default" id="reverseTitle">
-        <?= $reverseTitle ?> 
-    </button>
-</h3>
-<?= $this->tag->endForm() ?>
-<!-- table -->
-<table class="table table-hover table-bordered table-condensed">
-    <thead>
+<div>
+    <h3 align="left">あなたが需要のあるアプリ/webサイト/システム/etc.を探したい時 </h3>
+    <h3 align="left"><b>1</b> グローバルテーブルでそれを探します。</h2>
+    <h3 align="left"><b>2</b> いいものがあったらそれらを選択して[入]ボタンをクリック。
+    ローカルテーブルに追加されます</h2>
+    <h3 align="left"><b>3</b> これでアイディアをいつでも見たい時に見れます。需要があり、人の役に立つものを制作しましょう。</h2><img src="images/hellowork_computer.png">
+</div>
+<div class="page-header">
+    <h1 class="kojin">くわしい使い方</h1>
+</div>
+        ＊スライドが小さく表示されてしまう場合はブラウザのウィンドウサイズを上下させてみてください。
+    <div align="center" style="width: 100% ">
+        <h3 align="center">あなたが需要のあるアプリ/webサイト/システムを探したい時</h2><br>
+<!--    <iframe align="center" src='https://scitacjp-my.sharepoint.com/personal/s3701_scit_ac_jp/_layouts/15/guestaccess.aspx?docid=04ea0c6be70654f61bcaa9e4b58b60f78&authkey=AdjsmBXNmtnhMJYVK5DHKqE&action=embedview&wdAr=1.7777777777777777'-->
+<!--                width='100%' height='60%' frameborder='0'></iframe>-->
+      <!--  <iframe src="https://docs.google.com/presentation/d/114pri1tXzrA_OAQUF7ot8E8k4rjEb1rDAifGewlE0SM/embed?start=false&loop=false&delayms=60000"
+                frameborder="0" width="500px" height="500px" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+        <iframe src="https://docs.google.com/presentation/d/1TAwyYnpl1b_AkaRGLmOjLMVQCmOA70uX4xfMWh9ovHk/embed?start=false&loop=false&delayms=60000"
+                frameborder="0" width="500px" height="500px" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+        -->
+        <!--<h3>ArroganciA発表（ショートver）</h3>
+        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTstuHA_Rvi0liQC7GPxy8nsOampjdg-ideyJQAXdNMAwHQiDb_jIwbSdRFz1esxKa-7pePWn3CdnKj/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>-->
+        <h3>ArroganciA2発表</h3>
+        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTJGu_9YfhIehfr0snODQmMaB6Q3yaigP3iFdfYsaZeVlmKQBd6a1fZu_LHmZ4uj9TiCxZAQurlHd0u/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+        <table>
         <tr>
-            <th class="table-head col-xs-1">選択</th>
-            <th class="table-head col-xs-7">ツイート</th>
-            <th class="table-head col-xs-2">ユーザ名</th>
-            <th class="table-head col-xs-2">日付</th>
+            <td><div class="kojin"><img src="images/2018pPiiP.gif" ></div></td>
+            <td><div>We don't adapt SSL yet,but We got PIIP.</div></td>
         </tr>
-    </thead>
-    <tbody>
-
-
-
-<?php $num = 0; ?>
-<?php foreach ($page->items as $data) { ?>
-<?php $num = $num + 1; ?>
-<tr>
-    <td class='list'>
-        <button id='a<?= $num ?>' name='check[]' value='<?= $data->tweet_id ?>' onclick="post(a<?= $num ?>,'<?= $data->tweet_id ?>');disabled = true;"><img src='<?= $this->url->get('img/star.png') ?>'></button>
-    </td>
-    <td class='list'>
-        <div ondblclick="window.open('<?= 'https://twitter.com/' . $data->account_name . '/status/' . $data->tweet_id ?>')"><?= $data->tweet ?></div>
-    </td>
-    <td class='list'>
-        <?= $data->sender_name ?>
-    </td>
-    <td onclick="getElementById('a<?= $num ?>') . click();" class='list'>
-        <?= $data->time ?>
-    </td>
-</tr> 
-<?php } ?>
-    </tbody>
-</table>
-<!-- popup no-->
-<!-- pager -->
-<nav id="pager">
-    <ul class="pagination">
-         <li>
-            <a href="<?= $this->url->get('tables/index/' . $kind) ?>" aria-label="最初のページへ">
-                <span aria-hidden="true">最初へ</span>
-            </a>
-        </li>
-        <li>
-            <a href="<?= $this->url->get('tables/index/' . $kind . '?page=' . $page->before) ?>" aria-label="前のページへ">
-                <span aria-hidden="true">前へ</span>
-            </a>
-        </li>
-        <li class="disabled"><a href="#"><?= $page->current . ' / ' . $page->total_pages ?></a></li>
-        <li>
-            <a href="<?= $this->url->get('tables/index/' . $kind . '?page=' . $page->next) ?>" aria-label="次のページへ">
-                <span aria-hidden="true">次へ</span>
-            </a>
-        </li>
-        <li>
-            <a href="<?= $this->url->get('tables/index/' . $kind . '?page=' . $page->last) ?>" aria-label="最後のページへ">
-                <span aria-hidden="true">最後へ</span>
-            </a>
-        </li>
-    </ul>
-</nav>
-
-
-
+        </table>
+    <br>
+</div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -213,4 +164,5 @@ function post(id, tweet_id) {
 <?php } ?>
 </body>
 <html>
+
 

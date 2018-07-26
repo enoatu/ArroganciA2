@@ -13,11 +13,6 @@ class IndexController extends ControllerBase {
             $this->view->name = $this->session->get('user')['name'];
         }
         
-        if ($this->session->get('info')['info']) {
-            $this->view->setVar('info', $this->session->get('info')['info']);
-            $this->view->setVar('msg', $this->session->get('info')['msg']);
-            $this->session->remove('info');
-        }
         $this->assets->addCss('css/index.css');
         $this->assets->addJs('js/info.js');
     }

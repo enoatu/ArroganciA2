@@ -9,27 +9,26 @@ class TablesController extends \ArroganciA\Controller\ControllerBase {
        // $this->request->getPost($word, 'string');
     }
 
-    public function getDisplayTable($is_gl, $kind, $user_id) {
+    protected function getDisplayTable($is_gl, $kind, $user_id,$concatedWords) {
         $model = new \ArroganciA\Model\PhqlExcuter();
         $str = ($is_gl) ? 'gl': 'lo';
         //search
-        $concatedWords = $this->request->getPost('words', 'string');
-        $words = explode('=', $concatedWords);
+        $words = explode(' ', $concatedWords);
         return $model->sqlExecute($str . '_' . $kind, $user_id, $words);
     }
 
-    public function getTableName($param) {
+    protected function getTableName($param) {
         // table/index/appのindexやappを取り出す
         $tableName = $this->dispatcher->getParam($param);
         $tableName = $this->cutSlash($tableName);
         return $tableName;
     }
 
-    public function cutSlash(string $str = null) {
+    private function cutSlash(string $str = null) {
         return substr($str, 1, strlen($str) - 1);
     }
 
-    public function getMapTable($systemName) {
+    protected function getMapTable($systemName) {
         switch($systemName) {
         case 'app'     : return 'アプリ';
         case 'site'    : return 'ウェブサイト';

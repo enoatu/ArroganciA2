@@ -86,92 +86,46 @@
 </nav>
 
 <div id="wrap">
-<h2>
+<h1>
     <?= $title ?>
-</h2>
-<?= $this->tag->form([$toLocalorGlobal . '/index/' . $kind]) ?>
-<div class="input-group" id="searchForm">
-    <input type="text" class="form-control" value="<?= $postedWords ?>" placeholder="例) android おもしろい" name="words">
-    <span class="input-group-btn">
-        <button type="submit" class="btn btn-default">絞り込み</button>
-    </span>
+</h1> 
+<p>ようこそ<?php if (isset($name)) { ?><?= $name ?><?php } else { ?>ゲストユーザー<?php } ?>さん</p>
+<?php if (!isset($name)) { ?>
+    <div class="container">
+    <div class="jumbotron">
+        <h2><a href="<?= $this->url->get('register') ?>">メンバー登録をしよう！</a></h2>
+        <p>メンバーはお気に入り登録など、アイディアを管理することができます</p>
+    </div>
 </div>
-<?= $this->tag->endForm() ?>
-<?= $this->tag->form([$toLocalorGlobal . '/index/' . $kind]) ?>
-<button type="submit" class="btn btn-default">全表示</button>
-<?= $this->tag->endForm() ?>
-
-<?= $this->tag->form([$toReLocalorGlobal . '/index/' . $kind]) ?>
-<h3>
-    <button type="submit" class="btn btn-default" id="reverseTitle">
-        <?= $reverseTitle ?> 
-    </button>
-</h3>
-<?= $this->tag->endForm() ?>
-<!-- table -->
-<table class="table table-hover table-bordered table-condensed">
-    <thead>
-        <tr>
-            <th class="table-head col-xs-1">選択</th>
-            <th class="table-head col-xs-7">ツイート</th>
-            <th class="table-head col-xs-2">ユーザ名</th>
-            <th class="table-head col-xs-2">日付</th>
-        </tr>
-    </thead>
-    <tbody>
 
 
-
-<?php $num = 0; ?>
-<?php foreach ($page->items as $data) { ?>
-<?php $num = $num + 1; ?>
-<tr>
-    <td class='list'>
-        <button id='a<?= $num ?>' name='check[]' value='<?= $data->tweet_id ?>' onclick="post(a<?= $num ?>,'<?= $data->tweet_id ?>');disabled = true;"><img src='<?= $this->url->get('img/star.png') ?>'></button>
-    </td>
-    <td class='list'>
-        <div ondblclick="window.open('<?= 'https://twitter.com/' . $data->account_name . '/status/' . $data->tweet_id ?>')"><?= $data->tweet ?></div>
-    </td>
-    <td class='list'>
-        <?= $data->sender_name ?>
-    </td>
-    <td onclick="getElementById('a<?= $num ?>') . click();" class='list'>
-        <?= $data->time ?>
-    </td>
-</tr> 
 <?php } ?>
-    </tbody>
-</table>
-<!-- popup no-->
-<!-- pager -->
-<nav id="pager">
-    <ul class="pagination">
-         <li>
-            <a href="<?= $this->url->get('tables/index/' . $kind) ?>" aria-label="最初のページへ">
-                <span aria-hidden="true">最初へ</span>
-            </a>
-        </li>
-        <li>
-            <a href="<?= $this->url->get('tables/index/' . $kind . '?page=' . $page->before) ?>" aria-label="前のページへ">
-                <span aria-hidden="true">前へ</span>
-            </a>
-        </li>
-        <li class="disabled"><a href="#"><?= $page->current . ' / ' . $page->total_pages ?></a></li>
-        <li>
-            <a href="<?= $this->url->get('tables/index/' . $kind . '?page=' . $page->next) ?>" aria-label="次のページへ">
-                <span aria-hidden="true">次へ</span>
-            </a>
-        </li>
-        <li>
-            <a href="<?= $this->url->get('tables/index/' . $kind . '?page=' . $page->last) ?>" aria-label="最後のページへ">
-                <span aria-hidden="true">最後へ</span>
-            </a>
-        </li>
-    </ul>
-</nav>
-
-
-
+<div class="container">
+    <div class="jumbotron">
+        <h1>ArroganciAチュートリアル</h1>
+        <p>売れそうなアプリやシステムなどのアイディアをTwitterから収集する支援ツールです。</p>
+        <p>売れそうなアプリやシステムなどのアイディアをTwitterから収集するアプリです。。アプリやwebサイト等を作りたいな、と思った時、何を作ればいいのかわからない。</p>
+        <p>
+ そのような時はArroganciAを利用してみるのはいかがでしょうか？ArroganciAを利用すれば現在進行形の流行に乗ることができ、豊富にある組み込まれたリソースを駆使すれば需要のあるアプリ、webサイト、システム、サービス等の情報を入手し、管理することができます。
+        </p>
+    </div>
+</div>
+<p>グローバル</p>
+<div>
+    <?= $this->tag->linkto('tables/index/app', 'アプリ') ?>
+    <?= $this->tag->linkto('tables/index/game', 'ゲーム') ?>
+    <?= $this->tag->linkto('tables/index/site', 'サイト') ?>
+    <?= $this->tag->linkto('tables/index/service', 'サービス') ?>
+    <?= $this->tag->linkto('tables/index/system', 'システム') ?>
+</div>
+<p>ローカル</p>
+<div>  
+    <?= $this->tag->linkto('tables/local/app', 'アプリ') ?>
+    <?= $this->tag->linkto('tables/local/game', 'ゲーム') ?>
+    <?= $this->tag->linkto('tables/local/site', 'サイト') ?>
+    <?= $this->tag->linkto('tables/local/service', 'サービス') ?>
+    <?= $this->tag->linkto('tables/local/system', 'システム') ?>
+</div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

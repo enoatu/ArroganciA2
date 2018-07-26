@@ -125,9 +125,10 @@
 <?php $num = 0; ?>
 <?php foreach ($page->items as $data) { ?>
 <?php $num = $num + 1; ?>
+<form name="f1" method="POST" action="<?= $this->url->get('deletefav/index/' . $kind) ?>">
 <tr>
-    <td class='list'>
-        <button id='a<?= $num ?>' name='check[]' value='<?= $data->tweet_id ?>' onclick="post(a<?= $num ?>,'<?= $data->tweet_id ?>');disabled = true;"><img src='<?= $this->url->get('img/star.png') ?>'></button>
+    <td onclick="getElementById('a<?= $num ?>') . click();" class='list'>
+        <input type='checkbox' id='a<?= $num ?>' class="checkbox" name='check[]' value='<?= $data->tweet_id ?>' onclick="getElementById('a<?= $num ?>').click();show();">
     </td>
     <td class='list'>
         <div ondblclick="window.open('<?= 'https://twitter.com/' . $data->account_name . '/status/' . $data->tweet_id ?>')"><?= $data->tweet ?></div>
@@ -142,7 +143,14 @@
 <?php } ?>
     </tbody>
 </table>
-<!-- popup no-->
+<!-- popup -->
+<div id="popup">
+    <div id="in_popup">
+        <button type="submit" class="btn btn-primary btn-lg">
+            <span class="glyphicon glyphicon-trash"></span>　選択したものを消去する</button>
+    </div>
+</div>
+</form>
 <!-- pager -->
 <nav id="pager">
     <ul class="pagination">

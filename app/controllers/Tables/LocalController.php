@@ -5,16 +5,20 @@ class LocalController extends TablesController {
         $kind = $this->getTableName('kind');
         $this->assets->addJs('js/checkAction.js', true);
         $user_id = $this->session->get('user')['id'];
-        $data = $this->getDisplayTable(false, $kind, $user_id);
-        //if (!$data) return $this->redirect('index','show404');
+        $concatedWords = $this->request->getPost('words', 'string');
+        $displayTweets = $this->getDisplayTable(false, $kind, $user_id,$concatedWords);
+        if (!$displayTweets) return $this->redirect('index','show404');
         $currentPage = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
         $paginator = new Phalcon\Paginator\Adapter\Model([
-            'data' => $data,
+            'data' => $displayTweets,
             'limit' => 15,
             'page' => $currentPage
         ]);
+        
         $this->view->setVar('toLocalorGlobal', 'global');
+        $this->view->setVar('toReLocalorGlobal', 'global');
         $this->view->setVar('reverseTitle', 'グローバルテーブルへ');
+        $this->view->setVar('postedWords', $concatedWords);
         $this->view->setVar('title', $this->getMapTable($kind) . 'のローカルテーブル');
         $this->view->setVar('page', $paginator->getPaginate());
         $this->view->setVar('kind', $kind);

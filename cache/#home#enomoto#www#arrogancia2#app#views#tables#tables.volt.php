@@ -1,10 +1,24 @@
 <div id="wrap">
-<h1>
+<h2>
     <?= $title ?>
-</h1>
+</h2>
 <?= $this->tag->form([$toLocalorGlobal . '/index/' . $kind]) ?>
+<div class="input-group" id="searchForm">
+    <input type="text" class="form-control" value="<?= $postedWords ?>" placeholder="例) android おもしろい" name="words">
+    <span class="input-group-btn">
+        <button type="submit" class="btn btn-default">絞り込み</button>
+    </span>
+</div>
+<?= $this->tag->endForm() ?>
+<?= $this->tag->form([$toLocalorGlobal . '/index/' . $kind]) ?>
+<button type="submit" class="btn btn-default">全表示</button>
+<?= $this->tag->endForm() ?>
+
+<?= $this->tag->form([$toReLocalorGlobal . '/index/' . $kind]) ?>
 <h3>
-    <button type="submit" class="btn btn-default btn-lg"> <?= $reverseTitle ?> </button>
+    <button type="submit" class="btn btn-default" id="reverseTitle">
+        <?= $reverseTitle ?> 
+    </button>
 </h3>
 <?= $this->tag->endForm() ?>
 <!-- table -->

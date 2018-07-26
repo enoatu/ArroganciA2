@@ -1,16 +1,24 @@
 <div id="wrap">
-<h1>
+<h2>
     {{ title }}
-</h1>
-<div class="input-group">
-    <input type="text" class="form-control" placeholder="テキスト入力欄">
+</h2>
+{{ form(toLocalorGlobal ~ '/index/' ~ kind) }}
+<div class="input-group" id="searchForm">
+    <input type="text" class="form-control" value="{{ postedWords }}" placeholder="例) android おもしろい" name="words">
     <span class="input-group-btn">
-        <button type="button" class="btn btn-default">絞り込み</button>
+        <button type="submit" class="btn btn-default">絞り込み</button>
     </span>
 </div>
+{{ end_form() }}
 {{ form(toLocalorGlobal ~ '/index/' ~ kind) }}
+<button type="submit" class="btn btn-default">全表示</button>
+{{ end_form() }}
+
+{{ form(toReLocalorGlobal ~ '/index/' ~ kind) }}
 <h3>
-    <button type="submit" class="btn btn-default btn-lg"> {{ reverseTitle }} </button>
+    <button type="submit" class="btn btn-default" id="reverseTitle">
+        {{ reverseTitle }} 
+    </button>
 </h3>
 {{ end_form() }}
 <!-- table -->
