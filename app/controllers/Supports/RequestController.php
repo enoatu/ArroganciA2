@@ -15,8 +15,15 @@ class RequestController extends ControllerBase {
         $message = 
             $email."というメールアドレスの"
             .$name."さんから、「".$request."」";
-
-        mb_send_mail("artisan1221@gmail.com", "ArroganciAのご要望", $message);
+        $header = 'From: ArroganciA@enoatu.com';
+        $isSuccess = mb_send_mail(
+            "enotiru1221@gmail.com",
+            "ArroganciAのご要望",
+            $message,
+            $header,
+            '-f ' . 'enotiru@enoatu.com'
+        );
+        if (!$isSuccess) return $postError('メール送信に失敗');
         return $this->postSuccess();
     }
     private function postSuccess() {

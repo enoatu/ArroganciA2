@@ -1,20 +1,10 @@
 <?php
-
-use Phalcon\Mvc\Controller;
-
-class IndexController extends Controller
+use ArroganciA\Controller\ControllerBase;
+class ShareController extends ControllerBase
 {
-
     public function indexAction() {
-
-           }
-
-    public function registerAction() {
-
-          }
-    
-    public function show404Action() {
-         echo "<a href='https://www.youtube.com/watch?v=EvBDa4TX3Bo'>NOT FOUND</a>";
+        $this->view->title = "シェアしよう（棒読み）";
+        $this->assets->addCss('css/index.css');
     }
 }
 
