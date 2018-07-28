@@ -8,7 +8,11 @@ h1, h2, h3{
 .table {
     padding: 0px;
     margin: 0px;
-    /*table-layout: fixed;*/
+    table-layout: fixed;
+}
+
+td {
+    word-wrap:break-word;
 }
 
 /*
@@ -22,13 +26,14 @@ h1, h2, h3{
 .table-head:nth-child(2){
     width: 65%;
 }
-.table-head:nth-child(3){
-    width: 14%;
+/*.table-head:nth-child(3){
+    width: 120px;
 }
+
 .table-head:nth-child(4){
     width: 13%;
-}
-*/
+}*/
+
 .list > button >img {
     width: 20px;
     height: 20px;

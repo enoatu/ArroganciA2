@@ -9,15 +9,20 @@
     <td class='list'>
         <button id='a{{ num }}' name='check[]' value='{{ data.tweet_id }}' onclick="post(a{{ num }},'{{ data.tweet_id }}');disabled = true;"><img src='{{ url('img/star.png') }}'></button>
     </td>
+
+    {% if sender is not defined %}
     <td class='list'>
         <div ondblclick="window.open('{{'https://twitter.com/' ~ data.account_name ~ '/status/'  ~ data.tweet_id }}')">{{ data.tweet }}</div>
     </td>
+    {% endif %}
     <td class='list'>
         {{ data.sender_name }}
     </td>
+    {% if date is not defined %}
     <td onclick="getElementById('a{{ num }}') . click();" class='list'>
         {{ data.time }}
     </td>
+    {% endif %}
 </tr> 
 {% endfor %}
     </tbody>

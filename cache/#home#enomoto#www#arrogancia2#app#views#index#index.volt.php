@@ -110,21 +110,19 @@
         </p>
     </div>
 </div>
-<p>グローバル</p>
-<div>
-    <?= $this->tag->linkto('tables/index/app', 'アプリ') ?>
-    <?= $this->tag->linkto('tables/index/game', 'ゲーム') ?>
-    <?= $this->tag->linkto('tables/index/site', 'サイト') ?>
-    <?= $this->tag->linkto('tables/index/service', 'サービス') ?>
-    <?= $this->tag->linkto('tables/index/system', 'システム') ?>
-</div>
-<p>ローカル</p>
-<div>  
-    <?= $this->tag->linkto('tables/local/app', 'アプリ') ?>
-    <?= $this->tag->linkto('tables/local/game', 'ゲーム') ?>
-    <?= $this->tag->linkto('tables/local/site', 'サイト') ?>
-    <?= $this->tag->linkto('tables/local/service', 'サービス') ?>
-    <?= $this->tag->linkto('tables/local/system', 'システム') ?>
+
+<h3>ほかの制作アプリ</h3>
+<div align="center">
+    <p><a href="https://enoatu.com/">ホームページ</a></p>
+    <p><a href="https://enoatu.com/apps/webcam/">ウェブカメラ</a></p>
+    <p><a href="https://enoatu.com/games/rojokabaddi/">路上カバディ</a></p>
+    <p><a href="https://enoatu.com/CriticalPathFinder/">クリティカルパス</a></p>
+    <p><a href="https://enoatu.com/DispJanet">あなたの残り寿命</a></p>
+    <p><a href="https://enoatu.com/GyakuPOpener">逆ポーランド</a></p>
+    <p><a href="https://enoatu.com/nopaste">nopaste</a></p>
+    <p><a href="https://enoatu.com/Vdisp">出力補助</a></p>
+    <p><a href="https://enoatu.com/買うモナールnext">買うモナールnext</a></p>
+    <p><a href="https://enoatu.com/memo/alter_memo">メモアプリ</a></p>
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

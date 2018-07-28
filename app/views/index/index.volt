@@ -18,21 +18,19 @@
         </p>
     </div>
 </div>
-<p>グローバル</p>
-<div>
-    {{linkTo("tables/index/app", "アプリ")}}
-    {{linkTo("tables/index/game", "ゲーム")}}
-    {{linkTo("tables/index/site", "サイト")}}
-    {{linkTo("tables/index/service", "サービス")}}
-    {{linkTo("tables/index/system", "システム")}}
-</div>
-<p>ローカル</p>
-<div>  
-    {{linkTo("tables/local/app", "アプリ")}}
-    {{linkTo("tables/local/game", "ゲーム")}}
-    {{linkTo("tables/local/site", "サイト")}}
-    {{linkTo("tables/local/service", "サービス")}}
-    {{linkTo("tables/local/system", "システム")}}
+
+<h3>ほかの制作アプリ</h3>
+<div align="center">
+    <p><a href="https://enoatu.com/">ホームページ</a></p>
+    <p><a href="https://enoatu.com/apps/webcam/">ウェブカメラ</a></p>
+    <p><a href="https://enoatu.com/games/rojokabaddi/">路上カバディ</a></p>
+    <p><a href="https://enoatu.com/CriticalPathFinder/">クリティカルパス</a></p>
+    <p><a href="https://enoatu.com/DispJanet">あなたの残り寿命</a></p>
+    <p><a href="https://enoatu.com/GyakuPOpener">逆ポーランド</a></p>
+    <p><a href="https://enoatu.com/nopaste">nopaste</a></p>
+    <p><a href="https://enoatu.com/Vdisp">出力補助</a></p>
+    <p><a href="https://enoatu.com/買うモナールnext">買うモナールnext</a></p>
+    <p><a href="https://enoatu.com/memo/alter_memo">メモアプリ</a></p>
 </div>
 </div>
 {% include "layouts/footer.volt" %}
