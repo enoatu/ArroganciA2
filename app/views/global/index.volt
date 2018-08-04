@@ -9,7 +9,6 @@
     <td class='list'>
         <button id='a{{ num }}' name='check[]' value='{{ data.tweet_id }}' onclick="post(a{{ num }},'{{ data.tweet_id }}');disabled = true;"><img src='{{ url('img/star.png') }}'></button>
     </td>
-
     {% if sender is not defined %}
     <td class='list'>
         <div ondblclick="window.open('{{'https://twitter.com/' ~ data.account_name ~ '/status/'  ~ data.tweet_id }}')">{{ data.tweet }}</div>

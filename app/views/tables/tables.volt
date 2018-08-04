@@ -2,18 +2,20 @@
 <h1>
     {{ title }}
 </h1>
-{{ form(toLocalorGlobal ~ '/index/' ~ kind) }}
-<div class="input-group">
-<input type="text" class="form-control" value="{{ postedWords }}" placeholder="例) android おもしろい" name="words">
+{{ form(toLocalorGlobal ~ '/index/' ~ kind ~ '?search=' ~ postedWordsPlus) }}   
+<div class="input-group" id="searchForm">
+<input type="text"class="form-control" value="{{ postedWords }}" placeholder="例) android おもしろい" name="words">
 <span class="input-group-btn ">
     <button type="submit" class="btn btn-default">絞り込み</button>
 </span>
-</div>
+<span class="input-group-btn ">
 {{ end_form() }}
+
 {{ form(toLocalorGlobal ~ '/index/' ~ kind) }}
 <button type="submit" class="btn btn-default">全表示</button>
 {{ end_form() }}
-
+</span>
+</div>
 {{ form(toReLocalorGlobal ~ '/index/' ~ kind) }}
 <h3>
     <button type="submit" class="btn btn-default" id="reverseTitle">

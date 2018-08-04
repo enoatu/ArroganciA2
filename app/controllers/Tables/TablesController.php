@@ -9,7 +9,7 @@ class TablesController extends \ArroganciA\Controller\ControllerBase {
        // $this->request->getPost($word, 'string');
     }
 
-    protected function getDisplayTable($is_gl, $kind, $user_id,$concatedWords) {
+     protected function getDisplayTable($is_gl, $kind, $user_id,$concatedWords) {
         $model = new \ArroganciA\Model\PhqlExcuter();
         $str = ($is_gl) ? 'gl': 'lo';
         //search
@@ -26,6 +26,14 @@ class TablesController extends \ArroganciA\Controller\ControllerBase {
 
     private function cutSlash(string $str = null) {
         return substr($str, 1, strlen($str) - 1);
+    }
+
+    protected function cutPlus($str) {
+        return str_replace('+', ' ', $str);
+    }
+
+    protected function getPlus($str) {
+        return str_replace(' ', '+', $str);
     }
 
     protected function getMapTable($systemName) {
