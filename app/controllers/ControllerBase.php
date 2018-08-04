@@ -14,11 +14,15 @@ class ControllerBase extends \Phalcon\Mvc\Controller {
 
     public function authenticate() {
         session_save_path("/tmp");
-        ini_set('session.gc_maxlifetime', 1800);
+        ini_set('session.gc_maxlifetime', 100000);
         ini_set('session.gc_probability', 1);
         ini_set('session.gc_divisor', 100);
         //新規で入ってきた時
         if (!isset($this->session->get('user')['id'])) {
+            $this->session->set('info', [
+                'info' => 'info',
+                'msg'  => 'ゲストユーザーでログインしました。',
+            ]);
             $this->session->set('user', [
                 'id'   => '32',
                 'name' => 'ゲストユーザー',

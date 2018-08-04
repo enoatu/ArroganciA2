@@ -2,8 +2,6 @@
 $di->set('router', function(){
     $router = new \Phalcon\Mvc\Router(false);
     $router->removeExtraSlashes(true);
-
-        
     $router->add(
         '/',
         [
@@ -11,7 +9,6 @@ $di->set('router', function(){
             'action'     => 'index'
         ]
     );
-
     $router->add(
         '/:controller',
         [
@@ -19,7 +16,6 @@ $di->set('router', function(){
             'action'     => 'index',
         ]
     );
-
     $router->add(
         '/:controller/:action',
         [
@@ -27,7 +23,6 @@ $di->set('router', function(){
             'action'     => 2,
         ]
     );
-
     $router->add(
         '/:controller/:action/:params',
         [
@@ -36,7 +31,6 @@ $di->set('router', function(){
             'kind'       => 3,
         ]
     );
-
     $router->add(
         '/:controller/:action/:params/:params',
         [
@@ -44,12 +38,6 @@ $di->set('router', function(){
             'action'     => 2,
             'kind'       => 3,
             'parameter'  => 4,
-        ]
-    );
-    $router->notFound(
-        [
-            'controller' => 'index',
-            'action'     => 'show404'
         ]
     );
     $router->handle();
