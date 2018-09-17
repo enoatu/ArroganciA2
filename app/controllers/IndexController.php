@@ -11,14 +11,13 @@ class IndexController extends ControllerBase {
         $this->view->title = 'Home';
         if ($this->session->has('user')) {
             $this->view->name = $this->session->get('user')['name'];
+            $this->session->remove('info');
         }
-        
         $this->assets->addCss('css/index.css');
         $this->assets->addJs('js/info.js');
     }
 
     public function show404Action() {
-        
     }
 }
 

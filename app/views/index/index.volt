@@ -5,7 +5,7 @@
     {{ title }}
 </h1> 
 <p>ようこそ{% if name is defined %}{{ name }}{% else %}ゲストユーザー{% endif %}さん</p>
-{% if name is not defined %}
+{% if name is "ゲストユーザー" %}
     {% include "index/guest.volt" %}
 {% endif %}
 <div class="container">
