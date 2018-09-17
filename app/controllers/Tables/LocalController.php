@@ -5,7 +5,7 @@ class LocalController extends TablesController {
         $kind          = $this->getTableName('kind');
         $user_id       = $this->session->get('user')['id'];
         $concatedWords = $this->request->getPost('words', 'string') ?? $this->dispatcher->getParam('search');
-        $displayTweets = $this->getDisplayTable(false, $kind, $user_id,$concatedWords);
+        $displayTweets = $this->getDisplayTable(false, $kind, $user_id, $concatedWords);
         if (!$displayTweets) return $this->redirect('index','show404');
 
         $currentPage = $this->dispatcher->getParam('page') ?? 1;
@@ -19,6 +19,7 @@ class LocalController extends TablesController {
         $this->view->setVar('toReLocalorGlobal', 'global');
         $this->view->setVar('reverseTitle', 'グローバルテーブルへ');
         $this->view->setVar('postedWords', $concatedWords);
+        $this->view->setVar('postedWordsPlus', $this->addPlus($concatedWords));
         $this->view->setVar('title', $this->getMapTable($kind) . 'のローカルテーブル');
         $this->view->setVar('page', $paginator->getPaginate());
         $this->view->setVar('kind', $kind);

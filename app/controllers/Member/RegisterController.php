@@ -33,7 +33,7 @@ class RegisterController extends ControllerBase {
         $success          = $user->save();
         $this->checkExistUser($username, $user->user_email);
 
-        if (!$success) { 
+        if (!$success) {
             $this->logger->info($user->user_id . ' ' . $username);
             $this->session->set('info', [
                 'info' => 'warning',

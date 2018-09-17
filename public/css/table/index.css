@@ -33,10 +33,14 @@ td {
 .table-head:nth-child(4){
     width: 13%;
 }*/
+.list > button {
+    width:100%;
+    text-align:center;
+}
 
-.list > button >img {
-    width: 20px;
-    height: 20px;
+.list > button > img {
+    width: 1em;
+    height: 1em;
 }
 
 #reverseTitle {
@@ -68,6 +72,7 @@ td {
     -webkit-transform: scale( 2 , 2 );
     -moz-transform: scale( 2 , 2 );
     vertical-align: middle;
+    margin: 40% auto !important;
 }
 
 #pager{
