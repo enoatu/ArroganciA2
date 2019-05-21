@@ -1,0 +1,29 @@
+MAILTO=enotiru1221@gmail.com
+SETLOCK=/usr/bin/setlock
+
+30 08 * * 1,2,3,4,5 SETLOCK /tmp/.ex2.lock /home/enomoto/ex2.sh
+#40 14 * * * /home/enomoto/ex2.sh
+#00 */1 * * * SETLOCK /tmp/.app.lock /home/enomoto/cronshell/app.sh
+#05 */1 * * * SETLOCK /tmp/.optimize.app.lock /home/enomoto/cronshell/optimizeDB/optimize_app.sh
+#10 */1 * * * SETLOCK /tmp/.game.lock /home/enomoto/cronshell/game.sh
+#15 */1 * * * SETLOCK /tmp/.optimizeDB.game.lock /home/enomoto/cronshell/optimizeDB/optimize_game.sh
+#20 */1 * * * SETLOCK /tmp/.site.lock /home/enomoto/cronshell/site.sh
+#25 */1 * * * SETLOCK /tmp/.optimizeDB.site.lock /home/enomoto/cronshell/optimizeDB/optimize_site.sh
+#30 */1 * * * SETLOCK /tmp/.service.lock /home/enomoto/cronshell/service.sh
+#35 */1 * * * SETLOCK /tmp/.optimizeDB.service.lock /home/enomoto/cronshell/optimizeDB/optimize_service.sh
+#45 */1 * * * SETLOCK /tmp/.sys.lock /home/enomoto/cronshell/sys.sh
+#50 */1 * * * SETLOCK /tmp/.optimize.sys.lock /home/enomoto/cronshell/optimizeDB/optimize_system.sh
+#*/5 * * * *  SETLOCK /tmp/.trend.lock /home/enomoto/cronshell/trend.sh
+
+00 */1 * * * /home/enomoto/cronshell/app.sh
+05 */1 * * * /home/enomoto/cronshell/optimizeDB/optimize_app.sh
+10 */1 * * * /home/enomoto/cronshell/game.sh
+15 */1 * * * /home/enomoto/cronshell/optimizeDB/optimize_game.sh
+20 */1 * * * /home/enomoto/cronshell/site.sh
+25 */1 * * * /home/enomoto/cronshell/optimizeDB/optimize_site.sh
+30 */1 * * * /home/enomoto/cronshell/service.sh
+35 */1 * * * /home/enomoto/cronshell/optimizeDB/optimize_service.sh
+45 */1 * * * /home/enomoto/cronshell/sys.sh
+50 */1 * * * /home/enomoto/cronshell/optimizeDB/optimize_system.sh
+*/5 * * * *  /home/enomoto/cronshell/trend.sh
+#*/5 * * * * /home/enomoto/cronshell/Attu.sh
