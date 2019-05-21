@@ -1,0 +1,21 @@
+ArroganciA2
+
+config/db.phpに以下作成
+<?php
+use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
+
+//データベースサービスのセットアップ
+$di->setShared(
+    'db',
+    function(){
+        return new DbAdapter(
+            [
+                'host' => '',
+                'username' => '',
+                'password' => '',
+                'dbname' => '',
+            ]
+        );
+    }
+);
+
